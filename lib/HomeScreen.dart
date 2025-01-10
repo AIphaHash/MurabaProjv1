@@ -69,7 +69,9 @@ class _HomescreenState extends State<Homescreen> {
         print('Failed to fetch data: ${response.statusCode}');
       }
     } catch (e) {
-      print('Exception occurred: $e');
+      print('Exception occurfred: $e');
+            print('Exception occurfred: $e');
+
     }
   }
 }
