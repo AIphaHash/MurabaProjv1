@@ -70,8 +70,7 @@ class _HomescreenState extends State<Homescreen> {
       }
     } catch (e) {
       print('Exception occurfred: $e');
-            print('Exception occurfred: $e');
-
+      print('Exception occurfred: $e');
     }
   }
 }
