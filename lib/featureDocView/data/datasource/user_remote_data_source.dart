@@ -1,7 +1,6 @@
-// data/datasources/user_remote_data_source.dart
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:flutter_application_5/featureDocView/data/models/user_model.dart'; // Import your CustomAppBar file
+import 'package:flutter_application_5/featureDocView/data/models/user_model.dart';
 
 class UserRemoteDataSource {
   final http.Client client;
@@ -10,11 +9,11 @@ class UserRemoteDataSource {
 
   Future<List<UserModel>> getUsers() async {
     final url =
-        'https://devdmisapi.muraba.dev/api/app/doctor/info?DoctorId=9f155b37-a846-42c8-b385-0eccf297a1e6';
+        'https://devdmisapi.muraba.dev/api/app/doctor/info?DoctorId=336f126d-0798-4656-bfb6-7c891fa54951';
     final headers = {
       'accept': 'text/plain',
       'Authorization':
-          'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0MEIwMkQ1MjY2RjIzOUI0RUY1QjhBMzUxQTU0RjFBNzE2Q0RGQzQiLCJ4NXQiOiJkQXNDMVNadkk1dE85YmlqVWFWUEduRnMzOFEiLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAvIiwiZXhwIjoxNzM5MTg4NDcxLCJpYXQiOjE3MzY1OTY0NzEsImF1ZCI6IkRNSVMiLCJzY29wZSI6IkRNSVMiLCJqdGkiOiI4YzcxMWU2MS1mYjM3LTQ0OTMtODRmOS01MTNiMDQ3MzcwMzgiLCJzdWIiOiIzYTE3NTIyYi0xODVjLTlkMDQtMGNlNS1kNmEyOWNiNDRhYTgiLCJ1bmlxdWVfbmFtZSI6ImFtZWVyYmFzaW01MUBnbWFpbC5jb20iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhbWVlcmJhc2ltNTFAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6Itin2YXZitixINio2KfYs9mFICIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYW1lZXJiYXNpbTUxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjoiVHJ1ZSIsInBob25lX251bWJlcl92ZXJpZmllZCI6IkZhbHNlIiwib2lfcHJzdCI6IkRNSVNfQXBwIiwiY2xpZW50X2lkIjoiRE1JU19BcHAiLCJvaV90a25faWQiOiIzYTE3Njc2NC0xODZmLTNlNmYtOTExMi1kNTM0ZGZmYTgxZjcifQ.LdOh0pCj467ij2nTy0LHTvVB5_4t_nxkOonY9CNkCCoDb_Ysr3TBvgnDovykGP1vHlhrUN9-IKPJkqPPRz-Xi6GteSgVYB_0MWzYi4o7jocPcnZ1wI9uVF4JKLtxQc8tKlfZhjcA3VRX2kZfDtXRBkWHK27KTZ2MnVjJDc5Dk6vhGDQsrV4eF_lY-_XnWzoQieJx9yUAy8t0FIDXrjwkV3yEHlLcnunraT8eJxPTMobaxs58zBb5q5D_TUSyQeR6SMq-ToHHN-52FfgtfoTecTqEhm9js8FFkKhi6wsG_hW1mVylg2Cj_KMZEKmcq1DSGo4-CySYwJqkBNBq5B2AFg', // Replace with your actual token
+          'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0MEIwMkQ1MjY2RjIzOUI0RUY1QjhBMzUxQTU0RjFBNzE2Q0RGQzQiLCJ4NXQiOiJkQXNDMVNadkk1dE85YmlqVWFWUEduRnMzOFEiLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMTEvIiwiZXhwIjoxNzM5MjEzNTM5LCJpYXQiOjE3MzY2MjE1MzksImF1ZCI6IkRNSVMiLCJzY29wZSI6IkRNSVMiLCJqdGkiOiJlY2M4NzdlNi1kZDBlLTQxZjAtOGViZS01ZmMxZDNlYjljYzEiLCJzdWIiOiIzYTE3NTIyYi0xODVjLTlkMDQtMGNlNS1kNmEyOWNiNDRhYTgiLCJ1bmlxdWVfbmFtZSI6ImFtZWVyYmFzaW01MUBnbWFpbC5jb20iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhbWVlcmJhc2ltNTFAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6Itin2YXZitixINio2KfYs9mFICIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYW1lZXJiYXNpbTUxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjoiVHJ1ZSIsInBob25lX251bWJlcl92ZXJpZmllZCI6IkZhbHNlIiwib2lfcHJzdCI6IkRNSVNfQXBwIiwiY2xpZW50X2lkIjoiRE1JU19BcHAiLCJvaV90a25faWQiOiIzYTE3NjhlMi05YTQ5LTY1YzMtMGYwOC0wZTU5YzhkYzkwYWUifQ.ZJDBfBjgKN7K1cP0bS8IwT-xg4KyDZvdI-jxIzf7c1rMjUyOWG0i7fr8I4VP2Mpn0At05cfPDPGVjEidn1MrCmNZTaDzVKuyiCRviZfH5RvTv153dfga2-RgcnF_ceEWii24lkK_Qy-9M5nY1raMY2PviqYi6G-UDB9mFCke2WjHD5TUNuXgD-e7A0_hLMr6uU9KJMwFQoarFDGaW238I2Mw438Ws219OX-rrOqUNEnTmgYOoR6yA03BFRFw7HOA16Ike-IdZwad30ZlLu6SE3liCtjtQSjtdUIC6UfqFS2OZOz03rCjk42LwcNkhjv9jS7yWYnoQPsNdIjFN_2yLg',
       'X-Requested-With': 'XMLHttpRequest',
     };
 
@@ -37,14 +36,23 @@ class UserRemoteDataSource {
                 .map((json) => UserModel.fromJson(json as Map<String, dynamic>))
                 .toList();
           } else {
-            throw Exception('Unexpected response structure');
+            throw Exception(
+                'Unexpected response structure: Missing "enFirstName" or "users" keys.');
           }
         } else {
-          throw Exception('Unexpected response structure');
+          throw Exception('Unexpected response structure: Response is not a JSON object.');
         }
+      } else if (response.statusCode == 401) {
+        throw Exception(
+            'Unauthorized: Check if your access token is valid or has expired.');
+      } else if (response.statusCode == 404) {
+        throw Exception(
+            'Not Found: The requested resource does not exist at the specified URL.');
+      } else if (response.statusCode == 500) {
+        throw Exception('Server Error: The server encountered an issue.');
       } else {
-        print('Response Error: ${response.statusCode}');
-        throw Exception('Failed to load users');
+        throw Exception(
+            'Unexpected error: Received status code ${response.statusCode} with response: ${response.body}');
       }
     } catch (e) {
       print('Exception occurred: $e');
