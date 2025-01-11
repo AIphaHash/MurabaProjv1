@@ -42,35 +42,36 @@ class _HomescreenState extends State<Homescreen> {
   void fetch() async {
     print('Fetching data...');
     const url =
-        'https://devdmisapi.muraba.dev/api/app/doctor/0100c8d9-4dd6-427c-a55a-79d6476d4feb/audit-log';
+        'https://devdmisapi.muraba.dev/api/app/doctor/info?DoctorId=23cc95d9-bf3d-4fa5-84fa-b22bc2603d61';
     final uri = Uri.parse(url);
 
     final headers = {
       'accept': 'text/plain',
       'Authorization':
-          'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0MEIwMkQ1MjY2RjIzOUI0RUY1QjhBMzUxQTU0RjFBNzE2Q0RGQzQiLCJ4NXQiOiJkQXNDMVNadkk1dE85YmlqVWFWUEduRnMzOFEiLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAvIiwiZXhwIjoxNzM5MDExNTg5LCJpYXQiOjE3MzY0MTk1ODksImF1ZCI6IkRNSVMiLCJzY29wZSI6IkRNSVMiLCJqdGkiOiJiMjRiNTI5Ny02MDFiLTQwZWYtOTM1ZS1iN2RmZDY5Y2NjMmMiLCJzdWIiOiIzYTE3NTIyYi0xODVjLTlkMDQtMGNlNS1kNmEyOWNiNDRhYTgiLCJ1bmlxdWVfbmFtZSI6ImFtZWVyYmFzaW01MUBnbWFpbC5jb20iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhbWVlcmJhc2ltNTFAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6Itin2YXZitixINio2KfYs9mFICIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYW1lZXJiYXNpbTUxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjoiVHJ1ZSIsInBob25lX251bWJlcl92ZXJpZmllZCI6IkZhbHNlIiwib2lfcHJzdCI6IkRNSVNfQXBwIiwiY2xpZW50X2lkIjoiRE1JU19BcHAiLCJvaV90a25faWQiOiIzYTE3NWNkOS0xNmE2LTRhNTktODIwYi05MmE5NzhjOWI3ZTMifQ.Mie0pkFS_-_LSuupVSzsKHQNwQAZqDnINTFrBU41aOXuoRXLa8jDXyHezXW2wgKOnkkE_tFb3McnVAPf0eCksJSIIL7xirSBNwcwQRzq8YldbWf_QR4UjOZdnvVY9l1ZTt3gG1agrwr5BZ6vuS60h_nlfnmOl4cQz4ZFpOmU8nyPlE00BSGw9B3J_GKkpfVDhHTLZ8vNQGG0ODwIo_hk00crdU9v5rBj_3m9f0RY4_MefcOIYMGzDpHfg9Qd6uRNK4fUUDAt5NnljiRfSnnLheNHyn3WvYEbvheZ4LwVfpXN9w8oYEFZKkHhQ3WhILJNHEzoJwqEt0DtxojFSNl8iA',
+          'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0MEIwMkQ1MjY2RjIzOUI0RUY1QjhBMzUxQTU0RjFBNzE2Q0RGQzQiLCJ4NXQiOiJkQXNDMVNadkk1dE85YmlqVWFWUEduRnMzOFEiLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDEvIiwiZXhwIjoxNzM5MTc0NzY4LCJpYXQiOjE3MzY1ODI3NjgsImF1ZCI6IkRNSVMiLCJzY29wZSI6IkRNSVMiLCJqdGkiOiI1OGMyNzdjOS1kOTBiLTRjNTAtYjBmOC0zMWNhYmI1ODAyMzgiLCJzdWIiOiIzYTE3NTIyYi0xODVjLTlkMDQtMGNlNS1kNmEyOWNiNDRhYTgiLCJ1bmlxdWVfbmFtZSI6ImFtZWVyYmFzaW01MUBnbWFpbC5jb20iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhbWVlcmJhc2ltNTFAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6Itin2YXZitixINio2KfYs9mFICIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYW1lZXJiYXNpbTUxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjoiVHJ1ZSIsInBob25lX251bWJlcl92ZXJpZmllZCI6IkZhbHNlIiwib2lfcHJzdCI6IkRNSVNfQXBwIiwiY2xpZW50X2lkIjoiRE1JU19BcHAiLCJvaV90a25faWQiOiIzYTE3NjY5Mi1mZjJhLTNjMjAtNDg2NC1iYjc4N2UxMTA5NzYifQ.B0HrRVJwndk5bpuniozahvX96WWglOusJiVf3to0nM7GD7x-TPz2Bep85TillljyTmxg7I3Qu4oW6hR6pqlcugvM8vEw0089YDYftntHCtgmjZUgw1EC8inqefbni2uFYZ4uB_VwRQE1APIJV3zL-7Zw9o2l9Owsrd92A0ltdgntTeENtTNmdS3PZZSNCn7GNttteHululGGUX_bKRmRxJkXBh35BIduQuCwntmFlCtcrTPjWUsAwY7V---sExd4OgJr5GsDjXlU5qhWOT2BzzPSYIvK1kkQ560YHdH74-SwWWH50_jniyjWRSnka00s9X6XF3wCOyV601csaFNfRw',
       'X-Requested-With': 'XMLHttpRequest',
     };
 
     try {
       final response = await http.get(uri, headers: headers);
       if (response.statusCode == 200) {
-        final List<dynamic> json = jsonDecode(response.body);
+        final Map<String, dynamic> jsonResponse = jsonDecode(response.body);
 
-        // Extract userName values from response
-        setState(() {
-          userNames = json
-              .where((item) =>
-                  item is Map<String, dynamic> && item.containsKey('userName'))
-              .map<String>((item) => item['userName'] as String)
-              .toList();
-        });
+        // Extract user name from response
+        if (jsonResponse.containsKey('enFirstName')) {
+          setState(() {
+            userNames = [
+              jsonResponse['enFirstName'] as String
+            ]; // Display only the first name
+          });
+        } else {
+          print('No users found in the response.');
+        }
       } else {
         print('Failed to fetch data: ${response.statusCode}');
       }
     } catch (e) {
-      print('Exception occurfred: $e');
-      print('Exception occurfred: $e');
+      print('Exception occurred: $e');
     }
   }
 }
