@@ -4,12 +4,14 @@ class User {
   final String fullName;
   final String email;
   final String membershipDate;
+  final String pfp;
 
   User({
     required this.id,
     required this.fullName,
     required this.email,
     required this.membershipDate,
+    required this.pfp,
   });
 }
 

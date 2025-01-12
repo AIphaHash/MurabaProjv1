@@ -40,7 +40,8 @@ class UserRemoteDataSource {
                 'Unexpected response structure: Missing "enFirstName" or "users" keys.');
           }
         } else {
-          throw Exception('Unexpected response structure: Response is not a JSON object.');
+          throw Exception(
+              'Unexpected response structure: Response is not a JSON object.');
         }
       } else if (response.statusCode == 401) {
         throw Exception(
