@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/featureDocView/domain/entites/user.dart';
 import 'package:flutter_application_5/featureDocView/domain/useCases/fetch_users.dart';
-import 'package:flutter_application_5/featureDocView/presentation/Widgets/DocProfileBox.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/address.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/logoBanner.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/job.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/renew.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/enterDate.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/user_card.dart';
 
 class Homescreen extends StatefulWidget {
@@ -38,38 +41,15 @@ class _HomescreenState extends State<Homescreen> {
         Scaffold(
           backgroundColor: Colors
               .transparent, // Make Scaffold transparent to show background
-          appBar: CustomAppBar(),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 16), // Add space between app bar and content
-              FutureBuilder<List<User>>(
-                future: usersFuture,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return Center(child: Text("Failed to load profile data"));
-                  } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-                    final firstUser = snapshot.data![0]; // Get the first user
-                    return DocProfileBox(user: firstUser);
-                  } else {
-                    return DocProfileBox(
-                      user: User(
-                        id: '0',
-                        fullName: 'Placeholder Name',
-                        email: 'placeholder@example.com',
-                        membershipDate: 'N/A',
-                        pfp: 'placeholder.png',
-                      ), // Display a placeholder if no data is available
-                    );
-                  }
-                },
-              ),
-              SizedBox(
-                  height: 16), // Add space between profile box and user list
-              Expanded(
-                child: FutureBuilder<List<User>>(
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 50),
+                CustomAppBar(),
+                // Add space between app bar and content
+                // Add space between profile box and user list
+                FutureBuilder<List<User>>(
                   future: usersFuture,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
@@ -79,6 +59,8 @@ class _HomescreenState extends State<Homescreen> {
                     } else if (snapshot.hasData) {
                       final users = snapshot.data!;
                       return ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
                         itemCount: users.length,
                         itemBuilder: (context, index) {
                           final user = users[index];
@@ -90,8 +72,16 @@ class _HomescreenState extends State<Homescreen> {
                     }
                   },
                 ),
-              ),
-            ],
+                SizedBox(height: 10),
+                BlueBackgroundWidget(),
+                SizedBox(height: 10),
+                RedBackground(),
+                SizedBox(height: 10),
+                Address(),
+                SizedBox(height: 10),
+                job()
+              ],
+            ),
           ),
         ),
       ],

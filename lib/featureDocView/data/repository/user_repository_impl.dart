@@ -13,11 +13,14 @@ class UserRepositoryImpl implements UserRepository {
       final userModels = await remoteDataSource.getUsers();
       return userModels
           .map((model) => User(
-                id: 'dummy-id', // Assign dummy id if needed
                 fullName: model.fullName,
                 email: model.email,
                 membershipDate: model.membershipDate,
                 pfp: model.pfp,
+                arFullname: model.arFullname,
+                profisinaloti: model.profisinaloti,
+                id: model.id,
+                status: model.status,
               ))
           .toList();
     } catch (e) {
