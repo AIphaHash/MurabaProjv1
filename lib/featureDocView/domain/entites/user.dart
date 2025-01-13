@@ -8,6 +8,7 @@ class User {
   final String profisinaloti;
   final String id;
   final String status;
+  final String membershipAcceptDate;
 
   User({
     required this.fullName,
@@ -18,6 +19,7 @@ class User {
     required this.profisinaloti,
     required this.id,
     required this.status,
+    required this.membershipAcceptDate,
   });
 }
 

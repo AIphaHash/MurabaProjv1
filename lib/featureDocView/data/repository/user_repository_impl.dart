@@ -21,6 +21,7 @@ class UserRepositoryImpl implements UserRepository {
                 profisinaloti: model.profisinaloti,
                 id: model.id,
                 status: model.status,
+                membershipAcceptDate: model.membershipAcceptDate,
               ))
           .toList();
     } catch (e) {

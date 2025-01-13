@@ -7,6 +7,7 @@ class UserModel {
   final String profisinaloti;
   final String id;
   final String status;
+  final String membershipAcceptDate;
 
   UserModel({
     required this.fullName,
@@ -17,6 +18,7 @@ class UserModel {
     required this.profisinaloti,
     required this.id,
     required this.status,
+    required this.membershipAcceptDate,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -30,6 +32,7 @@ class UserModel {
           ?['arName'],
       id: json['registrationNo'] ?? '',
       status: json['doctorProfessionalities'][0]['status']?['arName'],
+      membershipAcceptDate: json['membershipAcceptDate'] ?? '',
     );
   }
 }

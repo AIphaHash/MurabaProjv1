@@ -73,9 +73,53 @@ class _HomescreenState extends State<Homescreen> {
                   },
                 ),
                 SizedBox(height: 10),
-                BlueBackgroundWidget(),
+                FutureBuilder<List<User>>(
+                  future: usersFuture,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError) {
+                      return Center(child: Text("Failed to load data"));
+                    } else if (snapshot.hasData) {
+                      final users = snapshot.data!;
+                      return ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: users.length,
+                        itemBuilder: (context, index) {
+                          final user = users[index];
+                          return BlueBackgroundWidget(user: user);
+                        },
+                      );
+                    } else {
+                      return Center(child: Text("No data available"));
+                    }
+                  },
+                ),
                 SizedBox(height: 10),
-                RedBackground(),
+                FutureBuilder<List<User>>(
+                  future: usersFuture,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError) {
+                      return Center(child: Text("Failed to load data"));
+                    } else if (snapshot.hasData) {
+                      final users = snapshot.data!;
+                      return ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: users.length,
+                        itemBuilder: (context, index) {
+                          final user = users[index];
+                          return RedBackground(user: user);
+                        },
+                      );
+                    } else {
+                      return Center(child: Text("No data available"));
+                    }
+                  },
+                ),
                 SizedBox(height: 10),
                 Address(),
                 SizedBox(height: 10),
