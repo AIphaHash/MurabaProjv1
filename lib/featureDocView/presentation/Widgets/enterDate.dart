@@ -11,7 +11,7 @@ class BlueBackgroundWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     // Parse and format the date
     DateTime parsedDate = DateTime.parse(user.membershipAcceptDate);
-    String formattedDate = DateFormat('yyyy-MM-dd').format(parsedDate);
+    String formattedDate = DateFormat('yyyy.MM.dd').format(parsedDate);
 
     return Center(
       child: Container(
@@ -30,14 +30,15 @@ class BlueBackgroundWidget extends StatelessWidget {
                   horizontal: 8.0,
                   vertical: 4.0), // Add padding inside the container
               decoration: BoxDecoration(
-                color: Colors.blue, // Background color
-                borderRadius: BorderRadius.circular(8.0), // Corner radius
+                color: const Color.fromARGB(
+                    255, 161, 213, 255), // Background color
+                borderRadius: BorderRadius.circular(6.0), // Corner radius
               ),
               child: Text(
                 formattedDate,
                 style: TextStyle(
-                  color: const Color.fromARGB(255, 240, 248, 255), // Text color
-                  fontSize: 16.0,
+                  color: const Color.fromARGB(255, 17, 104, 180), // Text color
+                  fontSize: 11.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),

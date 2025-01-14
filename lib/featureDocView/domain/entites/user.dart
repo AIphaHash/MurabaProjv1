@@ -23,6 +23,16 @@ class User {
   });
 }
 
+class DoctorImage {
+  final String doctorId;
+  final String personalImagePath;
+
+  DoctorImage({
+    required this.doctorId,
+    required this.personalImagePath,
+  });
+}
+
 // domain/repositories/user_repository.dart
 abstract class UserRepository {
   Future<List<User>> fetchUsers();
