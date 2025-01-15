@@ -12,8 +12,7 @@ class UserRemoteDataSource {
         'https://devdmisapi.muraba.dev/api/app/doctor/info?DoctorId=336f126d-0798-4656-bfb6-7c891fa54951';
     final headers = {
       'accept': 'text/plain',
-      'Authorization':
-          'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0MEIwMkQ1MjY2RjIzOUI0RUY1QjhBMzUxQTU0RjFBNzE2Q0RGQzQiLCJ4NXQiOiJkQXNDMVNadkk1dE85YmlqVWFWUEduRnMzOFEiLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDEvIiwiZXhwIjoxNzM5NDQ0NjU2LCJpYXQiOjE3MzY4NTI2NTYsImF1ZCI6IkRNSVMiLCJzY29wZSI6IkRNSVMiLCJqdGkiOiIxMTA5ODBjZC1iOWRjLTQ3NjgtOGFlOS03YTJlNjhhZGZkNDkiLCJzdWIiOiIzYTE3NTIyYi0xODVjLTlkMDQtMGNlNS1kNmEyOWNiNDRhYTgiLCJ1bmlxdWVfbmFtZSI6ImFtZWVyYmFzaW01MUBnbWFpbC5jb20iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhbWVlcmJhc2ltNTFAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6Itin2YXZitixINio2KfYs9mFICIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYW1lZXJiYXNpbTUxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjoiVHJ1ZSIsInBob25lX251bWJlcl92ZXJpZmllZCI6IkZhbHNlIiwib2lfcHJzdCI6IkRNSVNfQXBwIiwiY2xpZW50X2lkIjoiRE1JU19BcHAiLCJvaV90a25faWQiOiIzYTE3NzZhOS0yYWY5LWZjYTgtM2JhZC0zZTM2YTMwOGViZDcifQ.O-7SohUwCryYiIxLiiSyEpxjM0Aq798xul4RBbejtQC5s2IO7Hw20s8yFO4vO6levkAvj7azvOrvRTs8vrby5Brb5lzQwGAT9-2mdOppFrx2pSbf9IHu7bXkGYlJn7IX51_VWhGc6aIcDnELX9a4hDxoj94FVOeWQam7z-MXocV6KQCBl7mFwpCRbdhPEcA-cRNk-uB-de3OmYjz9quGOKkrSCv7bzLciL_5IcxA1jAU2_qJvXMgTAZwHDYExlciBiG2v8GVRD7jeoin97ue3fn-FR2XZzZswLGlnB9S2Ms2KaSAaGj-Fy3E9hcELvDNxa7jfjLBq-thr7KOh16x7w',
+      'Authorization': 'Bearer barer token',
       'X-Requested-With': 'XMLHttpRequest',
     };
 

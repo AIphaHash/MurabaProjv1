@@ -45,10 +45,9 @@ class _HomescreenState extends State<Homescreen> {
           backgroundColor: Colors.transparent,
           body: Column(
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               // CustomAppBar (Stays fixed)
               CustomAppBar(),
-              const SizedBox(height: 10),
               // UserCard (Always visible)
               FutureBuilder<List<User>>(
                 future: usersFuture,
@@ -77,7 +76,9 @@ class _HomescreenState extends State<Homescreen> {
               // Additional Content (Toggle height)
               AnimatedContainer(
                 duration: const Duration(milliseconds: 500), // Smooth animation
-                height: hideContent ? 0 : 430, // Adjust height dynamically
+                height: hideContent ? 0 : 370,
+                padding: EdgeInsets.fromLTRB(
+                    0, 0, 0, 0), // Adjust height dynamically
                 child: Column(
                   children: [
                     Expanded(
@@ -138,15 +139,9 @@ class _HomescreenState extends State<Homescreen> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 10), // Optional spacing
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 500),
-                      height: hideContent
-                          ? 0
-                          : 200, // Adjust height of Address widget
-                      child: Address(),
-                    ),
-                    const SizedBox(height: 10), // Optional spacing
+                    job(),
+                    // Optional spacing
+
                     Widget213(),
                   ],
                 ),

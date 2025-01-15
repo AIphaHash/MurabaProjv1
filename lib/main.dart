@@ -3,6 +3,9 @@ import 'package:flutter_application_5/featureDocView/data/datasource/user_remote
 import 'package:flutter_application_5/featureDocView/data/repository/user_repository_impl.dart';
 import 'package:flutter_application_5/featureDocView/domain/useCases/fetch_users.dart';
 import 'package:flutter_application_5/featureDocView/presentation/pages/HomeScreen.dart';
+import 'package:flutter_application_5/featureDocView/presentation/pages/Login.dart';
+import 'package:flutter_application_5/generated/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -28,7 +31,17 @@ class MyApp extends StatelessWidget {
     final fetchUsers = FetchUsers(userRepository);
 
     return MaterialApp(
-      home: Homescreen(fetchUsers: fetchUsers),
+      locale: const Locale('ar'),
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
+      home: Homescreen(
+        fetchUsers: fetchUsers,
+      ),
       debugShowCheckedModeBanner: false,
     );
   }

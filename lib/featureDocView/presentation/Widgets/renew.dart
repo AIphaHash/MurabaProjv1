@@ -17,13 +17,19 @@ class RedBackground extends StatelessWidget {
     return Center(
       child: Container(
         width: 420.0,
-        height: 70.0, // Height of the container
+        height: 60.0, // Height of the container
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 255, 213, 213), // Background color
           borderRadius: BorderRadius.circular(16.0), // Corner radius
         ),
+        margin: const EdgeInsets.fromLTRB(
+          0,
+          0,
+          0,
+          0,
+        ),
         padding: const EdgeInsets.fromLTRB(
-            20.0, 8.0, 8.0, 8.0), // Padding inside the container
+            20.0, 8.0, 8.0, 0), // Padding inside the container
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -31,24 +37,6 @@ class RedBackground extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0, vertical: 4.0), // Padding for the date
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(
-                        255, 255, 172, 172), // Background color
-                    borderRadius: BorderRadius.circular(6.0), // Corner radius
-                  ),
-                  child: Text(
-                    formattedDate,
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 174, 12, 12), // Text color
-                      fontSize: 11,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8), // Space between date and button
                 ElevatedButton(
                   onPressed: () {
                     // Show the popup dialog
@@ -65,11 +53,11 @@ class RedBackground extends StatelessWidget {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        const Color.fromARGB(255, 255, 94, 82), // Button color
+                    backgroundColor: const Color.fromARGB(
+                        255, 255, 129, 120), // Button color
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 5), // Adjust padding
-                    minimumSize: const Size(200, 30), // Button size
+                        horizontal: 0, vertical: 0), // Adjust padding
+                    minimumSize: const Size(140, 0), // Button size
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5), // Corner radius
                     ),

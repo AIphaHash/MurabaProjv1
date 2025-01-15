@@ -44,7 +44,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 4), // Space between texts
+              const SizedBox(height: 0), // Space between texts
               Text(
                 "نظام معلومات الطبيب", // Second Arabic text
                 style: const TextStyle(
@@ -53,13 +53,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 4), // Space between texts
+              const SizedBox(height: 0), // Space between texts
               Text(
                 "Iraqi Medical Association", // Third text
                 style: const TextStyle(
                   fontSize: 10,
                   color: Colors.black, // Text color
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             ],

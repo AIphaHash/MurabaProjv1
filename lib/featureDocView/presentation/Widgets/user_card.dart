@@ -9,31 +9,30 @@ class UserCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 170, // Set the desired height for the background
+      height: 110, // Set the desired height for the background
       child: Card(
         color: Colors.white, // Set the background color to white
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
           child: Row(
             children: [
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 8.0,
+                              horizontal: 10.0,
                               vertical:
-                                  4.0), // Add padding inside the container
+                                  0.0), // Add padding inside the container
                           decoration: BoxDecoration(
                             color: Colors.green, // Background color
                             borderRadius:
-                                BorderRadius.circular(15.0), // Border radius
+                                BorderRadius.circular(6), // Border radius
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -41,7 +40,7 @@ class UserCard extends StatelessWidget {
                               Text(
                                 user.status, // Replace with your desired text
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 10,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white, // Text color
                                 ),
@@ -50,7 +49,7 @@ class UserCard extends StatelessWidget {
                                   width: 4), // Space between text and dot
                               Icon(
                                 Icons.circle,
-                                size: 8, // Size of the dot
+                                size: 12, // Size of the dot
                                 color: Colors.white, // Color of the dot
                               ),
                             ],
@@ -61,7 +60,7 @@ class UserCard extends StatelessWidget {
                           child: Text(
                             '${user.id.toString()}#',
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: const Color.fromARGB(255, 17, 91, 152),
                             ),
@@ -79,13 +78,31 @@ class UserCard extends StatelessWidget {
                             fontFamily: 'Schyler'),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
-                      user.fullName,
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    GestureDetector(
+                      onTap: () {
+                        // Display the full name using a tooltip or snackbar
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(user.fullName),
+                            duration: Duration(
+                                seconds:
+                                    2), // Display the message for 2 seconds
+                          ),
+                        );
+                      },
+                      child: Text(
+                        user.fullName.length > 35
+                            ? '${user.fullName.substring(0, 34)}..'
+                            : user.fullName,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        overflow: TextOverflow
+                            .ellipsis, // Ensures ellipses for long text
+                        maxLines: 1, // Limits the text to a single line
+                      ),
                     ),
-                    SizedBox(height: 10),
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
@@ -102,8 +119,8 @@ class UserCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.network(
                     'https://devdmisapi.muraba.dev/${user.pfp}',
-                    width: 90, // Adjust the width as needed
-                    height: 100, // Adjust the height as needed
+                    width: 75, // Adjust the width as needed
+                    height: 120, // Adjust the height as needed
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return Icon(Icons.error,

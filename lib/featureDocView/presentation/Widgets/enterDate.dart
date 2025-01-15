@@ -16,7 +16,7 @@ class BlueBackgroundWidget extends StatelessWidget {
     return Center(
       child: Container(
         width: 420.0,
-        height: 70, // Set the desired height
+        height: 60, // Set the desired height
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 240, 248, 255), // Background color
           borderRadius: BorderRadius.circular(16.0), // Corner radius
