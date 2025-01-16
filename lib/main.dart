@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_5/featureDocView/data/datasource/user_remote_data_source.dart';
 import 'package:flutter_application_5/featureDocView/data/repository/user_repository_impl.dart';
 import 'package:flutter_application_5/featureDocView/domain/useCases/fetch_users.dart';
-import 'package:flutter_application_5/featureDocView/presentation/pages/HomeScreen.dart';
 import 'package:flutter_application_5/featureDocView/presentation/pages/Login.dart';
 import 'package:flutter_application_5/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -39,9 +38,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      home: Homescreen(
-        fetchUsers: fetchUsers,
-      ),
+      home: Login(),
       debugShowCheckedModeBanner: false,
     );
   }

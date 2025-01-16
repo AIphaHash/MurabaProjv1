@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/featureDocView/domain/entites/user.dart';
 import 'package:flutter_application_5/featureDocView/domain/useCases/fetch_users.dart';
-import 'package:flutter_application_5/featureDocView/presentation/Widgets/address.dart';
-import 'package:flutter_application_5/featureDocView/presentation/Widgets/d';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/enterDate.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/job.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/logoBanner.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/renew.dart';
-import 'package:flutter_application_5/featureDocView/presentation/Widgets/services.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/user_card.dart';
 
 class Homescreen extends StatefulWidget {
@@ -141,8 +138,6 @@ class _HomescreenState extends State<Homescreen> {
                     ),
                     job(),
                     // Optional spacing
-
-                    Widget213(),
                   ],
                 ),
               ),

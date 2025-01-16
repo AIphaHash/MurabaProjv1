@@ -33,7 +33,7 @@ class Login extends StatelessWidget {
                 // Custom Login Widget
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: customLogin(), // CustomLoginWidget for login form
+                  child: CustomLogin(), // CustomLoginWidget for login form
                 ),
               ],
             ),
