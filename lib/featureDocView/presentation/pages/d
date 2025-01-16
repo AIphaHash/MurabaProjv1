@@ -1,53 +1,44 @@
+// lib/services/auth_service.dart
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart'; // For navigation
 
 class AuthService {
   String? _cookie; // Variable to store cookies
-  final BuildContext context; // Context for navigation
-
-  // Constructor that accepts a context for navigation
-  AuthService(this.context);
 
   // Function for login and getting cookies
- Future<String> loginAndGetCookies(String? username, String? password) async {
-  final url = Uri.parse('https://devdmisapi.muraba.dev/api/account/login');
+  Future<String> loginAndGetCookies(String username, String password) async {
+    final url = Uri.parse('https://devdmisapi.muraba.dev/api/account/login');
+    final Map<String, dynamic> requestBody = {
+      "UserNameOrEmailAddress": username,
+      "Password": password,
+      "RememberMe": true,
+    };
 
-  // Handle null values by providing default empty strings or handling the error
-  final Map<String, dynamic> requestBody = {
-    "UserNameOrEmailAddress": username ?? '', // Default to empty string if null
-    "Password": password ?? '',              // Default to empty string if null
-    "RememberMe": true,
-  };
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: jsonEncode(requestBody),
+      );
 
-  try {
-    final response = await http.post(
-      url,
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: jsonEncode(requestBody),
-    );
-
-    if (response.statusCode == 200) {
-      _cookie = response.headers['set-cookie'];
-      // After a successful login, call the authenticated request method
-      String authenticatedResponse = await sendAuthenticatedRequest();
-      return authenticatedResponse;
-    } else {
-      throw Exception('Login Failed: ${response.statusCode} - ${response.body}');
+      if (response.statusCode == 200) {
+        _cookie = response.headers['set-cookie'];
+        return 'Login Successful';
+      } else {
+        throw Exception('Login Failed: ${response.statusCode} - ${response.body}');
+      }
+    } catch (e) {
+      throw Exception('Error: $e');
     }
-  } catch (e) {
-    throw Exception('Error: $e');
   }
-}
-
 
   // Function to send authenticated requests
   Future<String> sendAuthenticatedRequest() async {
     final url = Uri.parse('https://devdmisapi.muraba.dev/api/app/doctor/info-as-doctor');
-    
     try {
       final response = await http.get(
         url,
@@ -59,7 +50,7 @@ class AuthService {
       );
 
       if (response.statusCode == 200) {
-        return response.body; // Return the response body of the authenticated request
+        return 'Authenticated Request Successful';
       } else {
         throw Exception('Request Failed: ${response.statusCode} - ${response.body}');
       }

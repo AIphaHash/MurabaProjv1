@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/featureDocView/data/datasource/user_remote_data_source.dart';
+import 'package:flutter_application_5/featureDocView/data/repository/user_repository_impl.dart';
+import 'package:flutter_application_5/featureDocView/domain/entites/user.dart';
+import 'package:flutter_application_5/featureDocView/domain/useCases/fetch_users.dart';
+import 'package:flutter_application_5/featureDocView/presentation/pages/HomeScreen.dart';
 import 'package:flutter_application_5/featureDocView/presentation/pages/d';
+import 'package:http/http.dart' as http;
 
 class CustomLogin extends StatefulWidget {
   final double height;
@@ -16,23 +22,49 @@ class _CustomLoginState extends State<CustomLogin> {
   String _response = ''; // To display the response
 
   late final AuthService _authService;
+  late final FetchUsers fetchUsers;
 
   @override
   void initState() {
     super.initState();
-    _authService = AuthService(context); // Initialize AuthService with context
+    _authService = AuthService(); // Initialize AuthService with context
+
+    // Initialize the final variables
+    final httpClient = http.Client();
+    final remoteDataSource = UserRemoteDataSource(client: httpClient);
+    final userRepository =
+        UserRepositoryImpl(remoteDataSource: remoteDataSource);
+    fetchUsers = FetchUsers(userRepository);
   }
 
   // Function to handle login
   Future<void> _login() async {
+    if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
+      setState(() {
+        _response = 'Username and password cannot be empty.';
+      });
+      return;
+    }
+
     try {
       String responseMessage = await _authService.loginAndGetCookies(
         _usernameController.text,
         _passwordController.text,
       );
+
       setState(() {
         _response = responseMessage;
       });
+
+      // Navigate to another page upon successful login
+      if (responseMessage == 'Login Successful') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Homescreen(fetchUsers: fetchUsers),
+          ),
+        );
+      }
     } catch (e) {
       setState(() {
         _response = e.toString();
