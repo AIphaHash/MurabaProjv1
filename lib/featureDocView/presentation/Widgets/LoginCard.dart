@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/featureDocView/data/datasource/user_remote_data_source.dart';
 import 'package:flutter_application_5/featureDocView/data/repository/user_repository_impl.dart';
-import 'package:flutter_application_5/featureDocView/domain/entites/user.dart';
 import 'package:flutter_application_5/featureDocView/domain/useCases/fetch_users.dart';
 import 'package:flutter_application_5/featureDocView/presentation/pages/HomeScreen.dart';
-import 'package:flutter_application_5/featureDocView/presentation/pages/d';
+
 import 'package:http/http.dart' as http;
 
 class CustomLogin extends StatefulWidget {
@@ -19,7 +18,7 @@ class CustomLogin extends StatefulWidget {
 class _CustomLoginState extends State<CustomLogin> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  String _response = ''; // To display the response
+  String _response = ''; // To display the response (use String instead of void)
 
   late final AuthService _authService;
   late final FetchUsers fetchUsers;
@@ -27,13 +26,12 @@ class _CustomLoginState extends State<CustomLogin> {
   @override
   void initState() {
     super.initState();
-    _authService = AuthService(); // Initialize AuthService with context
+    _authService = AuthService(); // Initialize AuthService
 
     // Initialize the final variables
     final httpClient = http.Client();
     final remoteDataSource = UserRemoteDataSource(client: httpClient);
-    final userRepository =
-        UserRepositoryImpl(remoteDataSource: remoteDataSource);
+    final userRepository = UserRepositoryImpl(remoteDataSource: remoteDataSource);
     fetchUsers = FetchUsers(userRepository);
   }
 
@@ -47,27 +45,27 @@ class _CustomLoginState extends State<CustomLogin> {
     }
 
     try {
-      String responseMessage = await _authService.loginAndGetCookies(
+      // Call the login function, without expecting a response
+      await _authService.loginAndGetCookies(
         _usernameController.text,
         _passwordController.text,
       );
 
+      // Assuming login success; you can display a success message or handle login-specific logic here
       setState(() {
-        _response = responseMessage;
+        _response = 'Login successful!';  // Modify this message as needed
       });
 
       // Navigate to another page upon successful login
-      if (responseMessage == 'Authenticated Request Successful') {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Homescreen(fetchUsers: fetchUsers),
-          ),
-        );
-      }
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Homescreen(fetchUsers: fetchUsers),
+        ),
+      );
     } catch (e) {
       setState(() {
-        _response = e.toString();
+        _response = e.toString();  // Display error message if login fails
       });
     }
   }

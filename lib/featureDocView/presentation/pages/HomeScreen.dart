@@ -4,6 +4,7 @@ import 'package:flutter_application_5/featureDocView/domain/useCases/fetch_users
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/enterDate.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/job.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/logoBanner.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/logoutButton.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/renew.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/user_card.dart';
 
@@ -137,6 +138,7 @@ class _HomescreenState extends State<Homescreen> {
                       ),
                     ),
                     job(),
+                    LogoutButton(),
                     // Optional spacing
                   ],
                 ),

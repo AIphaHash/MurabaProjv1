@@ -1,6 +1,68 @@
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter_application_5/featureDocView/data/models/user_model.dart';
+
+class AuthService {
+  static String? cookie; // Static variable to share cookies globally
+
+  // Function for login and getting cookies
+  Future<void> loginAndGetCookies(String username, String password) async {
+    final loginUrl = Uri.parse('https://devdmisapi.muraba.dev/api/account/login');
+    final requestBody = {
+      "UserNameOrEmailAddress": username,
+      "Password": password,
+      "RememberMe": true,
+    };
+
+    try {
+      // Log in and get cookies
+      final loginResponse = await http.post(
+        loginUrl,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode(requestBody),
+      );
+
+      if (loginResponse.statusCode == 200) {
+        cookie = loginResponse.headers['set-cookie'];
+        if (cookie == null) {
+          throw Exception('Login successful, but no cookie was received.');
+        }
+        print('Cookie: $cookie');
+      } else {
+        throw Exception(
+            'Login Failed: ${loginResponse.statusCode} - ${loginResponse.body}');
+      }
+    } catch (e) {
+      throw Exception('Error during login: $e');
+    }
+  }
+
+  // Function to send authenticated requests
+  Future<String> sendAuthenticatedRequest() async {
+    final url = Uri.parse('https://devdmisapi.muraba.dev/api/app/doctor/info-as-doctor');
+    try {
+      final response = await http.get(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          if (cookie != null) 'Cookie': cookie!,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return 'Authenticated Request Successful';
+      } else {
+        throw Exception('Request Failed: ${response.statusCode} - ${response.body}');
+      }
+    } catch (e) {
+      throw Exception('Error during authenticated request: $e');
+    }
+  }
+}
 
 class UserRemoteDataSource {
   final http.Client client;
@@ -8,17 +70,22 @@ class UserRemoteDataSource {
   UserRemoteDataSource({required this.client});
 
   Future<List<UserModel>> getUsers() async {
-    final url =
-        'https://devdmisapi.muraba.dev/api/app/doctor/info?DoctorId=336f126d-0798-4656-bfb6-7c891fa54951';
+    final url = 'https://devdmisapi.muraba.dev/api/app/doctor/info-as-doctor';
+
     final headers = {
       'accept': 'text/plain',
-      'Authorization': 'Bearer barer token',
       'X-Requested-With': 'XMLHttpRequest',
+      if (AuthService.cookie != null) 'Cookie': AuthService.cookie!,
     };
+
+    if (AuthService.cookie == null) {
+      throw Exception('Cookie is null. Please log in to retrieve a valid cookie.');
+    }
 
     try {
       final response = await client.get(Uri.parse(url), headers: headers);
 
+      print('Cookie Used: ${AuthService.cookie}');
       print('Server Response Status Code: ${response.statusCode}');
       print('Server Response Body: ${response.body}');
 
@@ -28,11 +95,11 @@ class UserRemoteDataSource {
         if (data is Map<String, dynamic>) {
           if (data.containsKey('enFirstName')) {
             print('Found "enFirstName" key');
-            return [UserModel.fromJson(data as Map<String, dynamic>)];
+            return [UserModel.fromJson(data)];
           } else if (data.containsKey('users')) {
             print('Found "users" key');
             return (data['users'] as List)
-                .map((json) => UserModel.fromJson(json as Map<String, dynamic>))
+                .map((json) => UserModel.fromJson(json))
                 .toList();
           } else {
             throw Exception(
