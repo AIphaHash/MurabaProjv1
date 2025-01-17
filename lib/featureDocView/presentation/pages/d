@@ -1,38 +1,39 @@
-// lib/services/auth_service.dart
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class AuthService {
   String? _cookie; // Variable to store cookies
 
-  // Function for login and getting cookies
+  // Function for login and getting cookies, then making an authenticated request
   Future<String> loginAndGetCookies(String username, String password) async {
-    final url = Uri.parse('https://devdmisapi.muraba.dev/api/account/login');
-    final Map<String, dynamic> requestBody = {
+    final loginUrl = Uri.parse('https://devdmisapi.muraba.dev/api/account/login');
+    final requestBody = {
       "UserNameOrEmailAddress": username,
       "Password": password,
       "RememberMe": true,
     };
 
     try {
-      final response = await http.post(
-        url,
+      // Step 1: Log in and get cookies
+      final loginResponse = await http.post(
+        loginUrl,
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
         },
         body: jsonEncode(requestBody),
       );
 
-      if (response.statusCode == 200) {
-        _cookie = response.headers['set-cookie'];
-        return 'Login Successful';
+      if (loginResponse.statusCode == 200) {
+        _cookie = loginResponse.headers['set-cookie'];
+
+        // Step 2: Use the cookies to make an authenticated request
+        return await sendAuthenticatedRequest();
       } else {
-        throw Exception('Login Failed: ${response.statusCode} - ${response.body}');
+        throw Exception('Login Failed: ${loginResponse.statusCode} - ${loginResponse.body}');
       }
     } catch (e) {
-      throw Exception('Error: $e');
+      throw Exception('Error during login and authenticated request: $e');
     }
   }
 
@@ -55,7 +56,7 @@ class AuthService {
         throw Exception('Request Failed: ${response.statusCode} - ${response.body}');
       }
     } catch (e) {
-      throw Exception('Error: $e');
+      throw Exception('Error during authenticated request: $e');
     }
   }
 }

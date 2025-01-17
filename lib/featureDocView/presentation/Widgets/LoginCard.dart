@@ -57,7 +57,7 @@ class _CustomLoginState extends State<CustomLogin> {
       });
 
       // Navigate to another page upon successful login
-      if (responseMessage == 'Login Successful') {
+      if (responseMessage == 'Authenticated Request Successful') {
         Navigator.push(
           context,
           MaterialPageRoute(
