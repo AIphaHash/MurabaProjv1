@@ -1,13 +1,23 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter_application_5/featureDocView/data/models/user_model.dart';
 
 class AuthService {
-  static String? cookie; // Static variable to share cookies globally
+  final _storage = FlutterSecureStorage();
+  final _encrypter = encrypt.Encrypter(encrypt.AES(
+    encrypt.Key.fromLength(32),
+    mode: encrypt.AESMode
+        .cbc, // the key here is a 32-byte also the mode of encryption is CBC
+  ));
 
-  // Function for login and getting cookies
-  Future<void> loginAndGetCookies(String username, String password) async {
-    final loginUrl = Uri.parse('https://devdmisapi.muraba.dev/api/account/login');
+  static String? cookie; // Static cookie to be used globally
+
+  // Function for login and getting cookies, then making an authenticated request using the cookies
+  Future<String> loginAndGetCookies(String username, String password) async {
+    final loginUrl =
+        Uri.parse('https://devdmisapi.muraba.dev/api/account/login');
     final requestBody = {
       "UserNameOrEmailAddress": username,
       "Password": password,
@@ -26,11 +36,19 @@ class AuthService {
       );
 
       if (loginResponse.statusCode == 200) {
-        cookie = loginResponse.headers['set-cookie'];
-        if (cookie == null) {
-          throw Exception('Login successful, but no cookie was received.');
+        String? loginCookie = loginResponse.headers['set-cookie'];
+
+        // Encrypt the cookie before storing it securely
+        if (loginCookie != null) {
+          final encryptedCookie = _encryptCookie(loginCookie);
+          await _storage.write(
+              key: _encrypter.toString(), value: encryptedCookie);
+
+          // Store the cookie in the static variable for later use
+          cookie = loginCookie;
+
+          return 'Login Successful';
         }
-        print('Cookie: $cookie');
       } else {
         throw Exception(
             'Login Failed: ${loginResponse.statusCode} - ${loginResponse.body}');
@@ -38,29 +56,51 @@ class AuthService {
     } catch (e) {
       throw Exception('Error during login: $e');
     }
+    return 'Login Failed';
   }
 
-  // Function to send authenticated requests
+  // Function to send authenticated requests using the cookie
   Future<String> sendAuthenticatedRequest() async {
-    final url = Uri.parse('https://devdmisapi.muraba.dev/api/app/doctor/info-as-doctor');
+    final url = Uri.parse(
+        'https://devdmisapi.muraba.dev/api/app/doctor/info-as-doctor');
+
+    if (cookie == null) {
+      throw Exception('No cookie found. Please log in first.');
+    }
+
     try {
       final response = await http.get(
         url,
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          if (cookie != null) 'Cookie': cookie!,
+          'Cookie': cookie!, // Use the cookie from the static variable
         },
       );
 
       if (response.statusCode == 200) {
         return 'Authenticated Request Successful';
       } else {
-        throw Exception('Request Failed: ${response.statusCode} - ${response.body}');
+        throw Exception(
+            'Request Failed: ${response.statusCode} - ${response.body}');
       }
     } catch (e) {
       throw Exception('Error during authenticated request: $e');
     }
+  }
+
+  // Encrypt the cookie before storing it in secure storage
+  String _encryptCookie(String cookie) {
+    final iv = encrypt.IV.fromLength(16); // Initialization vector
+    final encrypted = _encrypter.encrypt(cookie, iv: iv);
+    return encrypted.base64;
+  }
+
+  // Decrypt the cookie when retrieving it from secure storage
+  String _decryptCookie(String encryptedCookie) {
+    final iv = encrypt.IV.fromLength(16);
+    final decrypted = _encrypter.decrypt64(encryptedCookie, iv: iv);
+    return decrypted;
   }
 }
 
@@ -72,20 +112,20 @@ class UserRemoteDataSource {
   Future<List<UserModel>> getUsers() async {
     final url = 'https://devdmisapi.muraba.dev/api/app/doctor/info-as-doctor';
 
+    if (AuthService.cookie == null) {
+      throw Exception(
+          'Cookie is null. Please log in to retrieve a valid cookie.');
+    }
+
     final headers = {
       'accept': 'text/plain',
       'X-Requested-With': 'XMLHttpRequest',
-      if (AuthService.cookie != null) 'Cookie': AuthService.cookie!,
+      'Cookie': AuthService.cookie!,
     };
-
-    if (AuthService.cookie == null) {
-      throw Exception('Cookie is null. Please log in to retrieve a valid cookie.');
-    }
 
     try {
       final response = await client.get(Uri.parse(url), headers: headers);
 
-      print('Cookie Used: ${AuthService.cookie}');
       print('Server Response Status Code: ${response.statusCode}');
       print('Server Response Body: ${response.body}');
 
@@ -94,10 +134,8 @@ class UserRemoteDataSource {
 
         if (data is Map<String, dynamic>) {
           if (data.containsKey('enFirstName')) {
-            print('Found "enFirstName" key');
             return [UserModel.fromJson(data)];
           } else if (data.containsKey('users')) {
-            print('Found "users" key');
             return (data['users'] as List)
                 .map((json) => UserModel.fromJson(json))
                 .toList();

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_5/featureDocView/data/datasource/user_remote_data_source.dart';
+import 'package:flutter_application_5/featureDocView/data/datasource/Cookie.dart';
 import 'package:flutter_application_5/featureDocView/data/repository/user_repository_impl.dart';
 import 'package:flutter_application_5/featureDocView/domain/useCases/fetch_users.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/Buttons/Login.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/Buttons/forgotPass.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/textboxs/emailbox.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/textboxs/password.dart';
 import 'package:flutter_application_5/featureDocView/presentation/pages/HomeScreen.dart';
 
 import 'package:http/http.dart' as http;
@@ -31,7 +35,8 @@ class _CustomLoginState extends State<CustomLogin> {
     // Initialize the final variables
     final httpClient = http.Client();
     final remoteDataSource = UserRemoteDataSource(client: httpClient);
-    final userRepository = UserRepositoryImpl(remoteDataSource: remoteDataSource);
+    final userRepository =
+        UserRepositoryImpl(remoteDataSource: remoteDataSource);
     fetchUsers = FetchUsers(userRepository);
   }
 
@@ -53,7 +58,7 @@ class _CustomLoginState extends State<CustomLogin> {
 
       // Assuming login success; you can display a success message or handle login-specific logic here
       setState(() {
-        _response = 'Login successful!';  // Modify this message as needed
+        _response = 'Login successful!'; // Modify this message as needed
       });
 
       // Navigate to another page upon successful login
@@ -65,7 +70,7 @@ class _CustomLoginState extends State<CustomLogin> {
       );
     } catch (e) {
       setState(() {
-        _response = e.toString();  // Display error message if login fails
+        _response = e.toString(); // Display error message if login fails
       });
     }
   }
@@ -93,23 +98,33 @@ class _CustomLoginState extends State<CustomLogin> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextField(
-              controller: _usernameController,
-              style: inputTextStyle,
-              decoration: InputDecoration(hintText: 'Username'),
+            // Add the first image (Renew.png)
+            Image.asset(
+              'assets/images/Renew.png',
+              height: 130,
+              // Adjust height as needed
+            ),
+            const SizedBox(height: 10),
+            // Add the second image (Registration.png)
+            Image.asset(
+              'assets/images/registration.png',
+              height: 130, // Adjust height as needed
             ),
             const SizedBox(height: 12.0),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              style: inputTextStyle,
-              decoration: InputDecoration(hintText: 'Password'),
+            Text(
+              "------------------------أو------------------------",
+              style: const TextStyle(color: Color.fromARGB(255, 88, 88, 88)),
             ),
+            SizedBox(height: 10),
+            // Emailbox and other widgets
+            Emailbox(controller: _usernameController, hintText: "username"),
             const SizedBox(height: 12.0),
-            ElevatedButton(
-              onPressed: _login,
-              child: const Text('Login'),
-            ),
+            PasswordBox(controller: _passwordController, hintText: "password"),
+            const SizedBox(height: 5.0),
+            Forgotpass(text: "forgot the password?", onPressed: () {}),
+            const SizedBox(height: 5.0),
+
+            Login(onPressed: _login, text: "login"),
             if (_response.isNotEmpty)
               Text(
                 _response,

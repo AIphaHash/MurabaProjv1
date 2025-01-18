@@ -19,23 +19,34 @@ class Login extends StatelessWidget {
         // Scaffold with Transparent Background
         Scaffold(
           backgroundColor: Colors.transparent, // Ensure scaffold is transparent
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Logo Banner
-                Padding(
-                  padding:
-                      EdgeInsets.only(bottom: 10.0), // Space below the logo
-                  child: CustomAppBar(), // LogoBanner widget
-                ),
-                // Custom Login Widget
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CustomLogin(), // CustomLoginWidget for login form
-                ),
-              ],
+          body: SingleChildScrollView(
+            // Add this to make the body scrollable
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Logo Banner'
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(bottom: 10.0), // Space below the logo
+                    child: CustomAppBar(), // LogoBanner widget
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(0),
+                    child: SizedBox(
+                      height: 0,
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: CustomLogin(), // CustomLoginWidget for login form
+                  ),
+                ],
+              ),
             ),
           ),
         ),

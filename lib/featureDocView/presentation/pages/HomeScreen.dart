@@ -19,7 +19,7 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
   late Future<List<User>> usersFuture;
-  bool hideContent = false; // Tracks whether the content should shrink
+  bool hideContent = false;
 
   @override
   void initState() {
