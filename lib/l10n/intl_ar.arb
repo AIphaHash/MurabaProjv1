@@ -1,3 +1,7 @@
 {
-    "usernameInput": "اسم المستخدم"
+"usernameInput": "اسم المستخدم",
+"failed_load_data": "تعذر تحميل البيانات",
+"no_data": "لا توجد بيانات",
+"extended": "أظهار المزيد",
+"shrink": "أخفاء"
 }

@@ -22,6 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "extended": MessageLookupByLibrary.simpleMessage("أظهار المزيد"),
+        "failed_load_data":
+            MessageLookupByLibrary.simpleMessage("تعذر تحميل البيانات"),
+        "no_data": MessageLookupByLibrary.simpleMessage("لا توجد بيانات"),
+        "shrink": MessageLookupByLibrary.simpleMessage("أخفاء"),
         "usernameInput": MessageLookupByLibrary.simpleMessage("اسم المستخدم")
       };
 }

@@ -59,6 +59,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Failed to Load Data`
+  String get failed_load_data {
+    return Intl.message(
+      'Failed to Load Data',
+      name: 'failed_load_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Data Available`
+  String get no_data {
+    return Intl.message(
+      'No Data Available',
+      name: 'no_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show More`
+  String get extended {
+    return Intl.message(
+      'Show More',
+      name: 'extended',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show Less`
+  String get shrink {
+    return Intl.message(
+      'Show Less',
+      name: 'shrink',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

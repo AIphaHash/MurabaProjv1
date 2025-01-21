@@ -1,3 +1,7 @@
 {
- "usernameInput": "Username"
+"usernameInput": "Username",
+"failed_load_data": "Failed to Load Data",
+"no_data": "No Data Available",
+"extended": "Show More",
+"shrink": "Show Less"
 }

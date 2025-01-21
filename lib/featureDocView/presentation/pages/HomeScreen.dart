@@ -7,6 +7,7 @@ import 'package:flutter_application_5/featureDocView/presentation/Widgets/logoBa
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/logoutButton.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/renew.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/user_card.dart';
+import 'package:flutter_application_5/generated/l10n.dart';
 
 class Homescreen extends StatefulWidget {
   final FetchUsers fetchUsers;
@@ -53,7 +54,7 @@ class _HomescreenState extends State<Homescreen> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
-                    return const Center(child: Text("Failed to load data"));
+                    return Center(child: Text(S.of(context).failed_load_data));
                   } else if (snapshot.hasData) {
                     final users = snapshot.data!;
                     return ListView.builder(
@@ -66,7 +67,7 @@ class _HomescreenState extends State<Homescreen> {
                       },
                     );
                   } else {
-                    return const Center(child: Text("No data available"));
+                    return Center(child: Text(S.of(context).failed_load_data));
                   }
                 },
               ),
@@ -88,8 +89,8 @@ class _HomescreenState extends State<Homescreen> {
                             return const Center(
                                 child: CircularProgressIndicator());
                           } else if (snapshot.hasError) {
-                            return const Center(
-                                child: Text("Failed to load data"));
+                            return Center(
+                                child: Text(S.of(context).failed_load_data));
                           } else if (snapshot.hasData) {
                             final users = snapshot.data!;
                             return ListView.builder(
@@ -102,8 +103,7 @@ class _HomescreenState extends State<Homescreen> {
                               },
                             );
                           } else {
-                            return const Center(
-                                child: Text("No data available"));
+                            return Center(child: Text("No data available"));
                           }
                         },
                       ),
@@ -117,8 +117,8 @@ class _HomescreenState extends State<Homescreen> {
                             return const Center(
                                 child: CircularProgressIndicator());
                           } else if (snapshot.hasError) {
-                            return const Center(
-                                child: Text("Failed to load data"));
+                            return Center(
+                                child: Text(S.of(context).failed_load_data));
                           } else if (snapshot.hasData) {
                             final users = snapshot.data!;
                             return ListView.builder(
@@ -153,8 +153,9 @@ class _HomescreenState extends State<Homescreen> {
                       hideContent = !hideContent; // Toggle height
                     });
                   },
-                  child:
-                      Text(hideContent ? "Restore Content" : "Shrink Content"),
+                  child: Text(hideContent
+                      ? S.of(context).failed_load_data
+                      : S.of(context).failed_load_data),
                 ),
               ),
             ],
