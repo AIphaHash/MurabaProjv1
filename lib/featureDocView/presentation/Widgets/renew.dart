@@ -10,82 +10,95 @@ class RedBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Parse and format the date
-    DateTime parsedDate = DateTime.parse(user.membershipDate);
-    String formattedDate = DateFormat('yyyy-MM-dd').format(parsedDate);
+    try {
+      String formattedDate;
 
-    return Center(
-      child: Container(
-        width: 420.0,
-        height: 60.0, // Height of the container
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 213, 213), // Background color
-          borderRadius: BorderRadius.circular(16.0), // Corner radius
-        ),
-        margin: const EdgeInsets.fromLTRB(
-          0,
-          0,
-          0,
-          0,
-        ),
-        padding: const EdgeInsets.fromLTRB(
-            20.0, 8.0, 8.0, 0), // Padding inside the container
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // Left Column
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Show the popup dialog
-                    showDialog(
-                      context: context,
-                      builder: (context) => const Renewwindow(),
-                    );
-                  },
-                  child: const Text(
-                    '< طلب تجديد',
+      // Check if membershipDate is null
+      if (user.membershipDate == null || user.membershipDate.isEmpty) {
+        formattedDate = 'null'; // Display "null" if the date is null or empty
+      } else {
+        // Parse the date string
+        DateTime parsedDate;
+        if (user.membershipDate.endsWith('Z')) {
+          parsedDate = DateTime.parse(user.membershipDate).toLocal();
+        } else {
+          parsedDate = DateTime.parse(user.membershipDate);
+        }
+
+        // Format the parsed date
+        formattedDate = DateFormat('yyyy-MM-dd').format(parsedDate);
+      }
+
+      return Center(
+        child: Container(
+          width: 420.0,
+          height: 60.0, // Height of the container
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 255, 213, 213), // Background color
+            borderRadius: BorderRadius.circular(16.0), // Corner radius
+          ),
+          padding: const EdgeInsets.fromLTRB(
+              20.0, 8.0, 8.0, 0), // Padding inside the container
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  // Show the popup dialog
+                  showDialog(
+                    context: context,
+                    builder: (context) => const Renewwindow(),
+                  );
+                },
+                child: Text(
+                  'تجديد', // Display the formatted date or "null"
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10, // Button text font size
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      const Color.fromARGB(255, 255, 129, 120), // Button color
+                  minimumSize: const Size(140, 0), // Button size
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5), // Corner radius
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  Text(
+                    'غير فعال',
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10, // Button text font size
+                      color: Colors.blue, // Text color
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(
-                        255, 255, 129, 120), // Button color
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 0, vertical: 0), // Adjust padding
-                    minimumSize: const Size(140, 0), // Button size
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5), // Corner radius
+                  Text(
+                    formattedDate,
+                    style: TextStyle(
+                      color: Colors.blue, // Text color
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-              ],
-            ),
-            // Right Row
-            Row(
-              children: [
-                const Text(
-                  'غير فعال',
-                  style: TextStyle(
-                    color: Colors.blue, // Text color
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
+                  SizedBox(width: 8), // Space between text and icon
+                  Icon(
+                    Icons.calendar_today,
+                    color: Colors.blue, // Icon color
                   ),
-                ),
-                const SizedBox(width: 8), // Space between text and icon
-                const Icon(
-                  Icons.calendar_today,
-                  color: Colors.blue, // Icon color
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    } catch (e) {
+      return Center(
+        child: Text('Error parsing date: $e'),
+      );
+    }
   }
 }

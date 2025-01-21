@@ -28,6 +28,41 @@ class _HomescreenState extends State<Homescreen> {
     usersFuture = widget.fetchUsers.call();
   }
 
+  // This function will show the popup with the dropdown options
+  void _showLanguageDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: Text('Select Language'),
+          children: <Widget>[
+            SimpleDialogOption(
+              onPressed: () {
+                Navigator.pop(context, 'en');
+                // Handle language selection here
+                print('Selected language: en');
+              },
+              child: Text('English'),
+            ),
+            SimpleDialogOption(
+              onPressed: () {
+                Navigator.pop(context, 'ar');
+                // Handle language selection here
+                print('Selected language: ar');
+              },
+              child: Text('Arabic'),
+            ),
+          ],
+        );
+      },
+    ).then((selectedValue) {
+      if (selectedValue != null) {
+        // Handle language selection here
+        print('Selected language: $selectedValue');
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -44,7 +79,8 @@ class _HomescreenState extends State<Homescreen> {
           backgroundColor: Colors.transparent,
           body: Column(
             children: [
-              const SizedBox(height: 30),
+              const SizedBox(
+                  height: 30), // Space to account for the settings icon
               // CustomAppBar (Stays fixed)
               CustomAppBar(),
               // UserCard (Always visible)
@@ -71,43 +107,14 @@ class _HomescreenState extends State<Homescreen> {
                   }
                 },
               ),
-
               // Additional Content (Toggle height)
               AnimatedContainer(
                 duration: const Duration(milliseconds: 500), // Smooth animation
-                height: hideContent ? 0 : 370,
-                padding: EdgeInsets.fromLTRB(
+                height: hideContent ? 0 : 330,
+                padding: const EdgeInsets.fromLTRB(
                     0, 0, 0, 0), // Adjust height dynamically
                 child: Column(
                   children: [
-                    Expanded(
-                      child: FutureBuilder<List<User>>(
-                        future: usersFuture,
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          } else if (snapshot.hasError) {
-                            return Center(
-                                child: Text(S.of(context).failed_load_data));
-                          } else if (snapshot.hasData) {
-                            final users = snapshot.data!;
-                            return ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: users.length,
-                              itemBuilder: (context, index) {
-                                final user = users[index];
-                                return BlueBackgroundWidget(user: user);
-                              },
-                            );
-                          } else {
-                            return Center(child: Text("No data available"));
-                          }
-                        },
-                      ),
-                    ),
                     Expanded(
                       child: FutureBuilder<List<User>>(
                         future: usersFuture,
@@ -137,28 +144,54 @@ class _HomescreenState extends State<Homescreen> {
                         },
                       ),
                     ),
+                    Expanded(
+                      child: FutureBuilder<List<User>>(
+                        future: usersFuture,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          } else if (snapshot.hasError) {
+                            return Center(
+                                child: Text(S.of(context).failed_load_data));
+                          } else if (snapshot.hasData) {
+                            final users = snapshot.data!;
+                            return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: users.length,
+                              itemBuilder: (context, index) {
+                                final user = users[index];
+                                return BlueBackgroundWidget(user: user);
+                              },
+                            );
+                          } else {
+                            return const Center(
+                                child: Text("No data available"));
+                          }
+                        },
+                      ),
+                    ),
                     job(),
-                    LogoutButton(),
                     // Optional spacing
                   ],
                 ),
               ),
-
               // Push Button at the Bottom
-              Padding(
-                padding: const EdgeInsets.all(0.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      hideContent = !hideContent; // Toggle height
-                    });
-                  },
-                  child: Text(hideContent
-                      ? S.of(context).failed_load_data
-                      : S.of(context).failed_load_data),
-                ),
-              ),
+              LogoutButton(),
             ],
+          ),
+        ),
+        Positioned(
+          top: 40.0, // Adjust the vertical position above CustomAppBar
+          right: 280.0, // Adjust the horizontal position
+          child: IconButton(
+            icon: const Icon(Icons.settings,
+                color: Color.fromARGB(255, 54, 54, 54), size: 30.0),
+            onPressed: () {
+              _showLanguageDialog(context);
+            },
           ),
         ),
       ],
