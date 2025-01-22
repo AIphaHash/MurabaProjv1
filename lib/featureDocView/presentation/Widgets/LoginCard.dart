@@ -7,6 +7,7 @@ import 'package:flutter_application_5/featureDocView/presentation/Widgets/Button
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/textboxs/emailbox.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/textboxs/password.dart';
 import 'package:flutter_application_5/featureDocView/presentation/pages/HomeScreen.dart';
+import 'package:flutter_application_5/generated/l10n.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -44,7 +45,7 @@ class _CustomLoginState extends State<CustomLogin> {
   Future<void> _login() async {
     if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
       setState(() {
-        _response = 'Username and password cannot be empty.';
+        _response = S.of(context).login_error_user_pass;
       });
       return;
     }
@@ -58,7 +59,7 @@ class _CustomLoginState extends State<CustomLogin> {
 
       // Assuming login success; you can display a success message or handle login-specific logic here
       setState(() {
-        _response = 'Login successful!'; // Modify this message as needed
+        _response = S.of(context).sucess_login; // Modify this message as needed
       });
 
       // Navigate to another page upon successful login
@@ -112,19 +113,19 @@ class _CustomLoginState extends State<CustomLogin> {
             ),
             const SizedBox(height: 12.0),
             Text(
-              "------------------------أو------------------------",
+             S.of(context).or,
               style: const TextStyle(color: Color.fromARGB(255, 88, 88, 88)),
             ),
             SizedBox(height: 10),
             // Emailbox and other widgets
-            Emailbox(controller: _usernameController, hintText: "username"),
+            Emailbox(controller: _usernameController, hintText: S.of(context).usernameInput),
             const SizedBox(height: 12.0),
-            PasswordBox(controller: _passwordController, hintText: "password"),
+            PasswordBox(controller: _passwordController, hintText: S.of(context).password),
             const SizedBox(height: 5.0),
-            Forgotpass(text: "forgot the password?", onPressed: () {}),
+            Forgotpass(text: S.of(context).forgot_password, onPressed: () {}),
             const SizedBox(height: 5.0),
 
-            Login(onPressed: _login, text: "login"),
+            Login(onPressed: _login, text: S.of(context).login),
             if (_response.isNotEmpty)
               Text(
                 _response,

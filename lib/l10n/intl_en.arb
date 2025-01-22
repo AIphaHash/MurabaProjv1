@@ -1,7 +1,19 @@
 {
 "usernameInput": "Username",
+"password": "Password",
 "failed_load_data": "Failed to Load Data",
 "no_data": "No Data Available",
 "extended": "Show More",
-"shrink": "Show Less"
+"shrink": "Show Less",
+"membershib_date": "Membership Date",
+"login_error_user_pass": "Invalid Username or Password",
+"select_language": "Select Language",
+"or": "Or",
+"sucess_login": "Login Successful",
+"forgot_password": "Forgot Password",
+"login": "Login",
+"logout": "Logout",
+"renew": "Renew",
+"not_active": "Not Active"
+
 }

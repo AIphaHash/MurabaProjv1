@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/generated/l10n.dart';
 import 'package:intl/intl.dart'; // Add this import for date formatting
 import 'package:flutter_application_5/featureDocView/domain/entites/user.dart';
 
@@ -56,10 +57,10 @@ class BlueBackgroundWidget extends StatelessWidget {
               ),
             ),
             Row(
-              children: const [
+              children:  [
                 Text(
-                  'تاريخ الانتماء',
-                  style: TextStyle(
+                      S.of(context).membershib_date,  
+                                   style: TextStyle(
                     color: Colors.blue, // Text color
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,

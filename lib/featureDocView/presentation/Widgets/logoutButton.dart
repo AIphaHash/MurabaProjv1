@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/featureDocView/presentation/pages/Login.dart';
+import 'package:flutter_application_5/generated/l10n.dart';
 
 class LogoutButton extends StatelessWidget {
   @override
@@ -12,7 +13,7 @@ class LogoutButton extends StatelessWidget {
           MaterialPageRoute(builder: (context) => Login()),
         );
       },
-      child: Text('Logout'),
+      child: Text(S.of(context).logout),
     );
   }
 }

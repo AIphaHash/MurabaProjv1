@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/renewWindow.dart';
+import 'package:flutter_application_5/generated/l10n.dart';
 import 'package:intl/intl.dart'; // For date formatting
 import 'package:flutter_application_5/featureDocView/domain/entites/user.dart';
 
@@ -51,7 +52,7 @@ class RedBackground extends StatelessWidget {
                   );
                 },
                 child: Text(
-                  'تجديد', // Display the formatted date or "null"
+                  S.of(context).renew, // Display the formatted date or "null"
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 10, // Button text font size
@@ -69,7 +70,7 @@ class RedBackground extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'غير فعال',
+                    S.of(context).not_active,
                     style: TextStyle(
                       color: Colors.blue, // Text color
                       fontSize: 16.0,

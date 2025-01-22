@@ -34,7 +34,7 @@ class _HomescreenState extends State<Homescreen> {
       context: context,
       builder: (BuildContext context) {
         return SimpleDialog(
-          title: Text('Select Language'),
+          title: Text(S.of(context).select_language),
           children: <Widget>[
             SimpleDialogOption(
               onPressed: () {
@@ -138,8 +138,8 @@ class _HomescreenState extends State<Homescreen> {
                               },
                             );
                           } else {
-                            return const Center(
-                                child: Text("No data available"));
+                            return  Center(
+                                child: Text(S.of(context).no_data));
                           }
                         },
                       ),
@@ -167,8 +167,8 @@ class _HomescreenState extends State<Homescreen> {
                               },
                             );
                           } else {
-                            return const Center(
-                                child: Text("No data available"));
+                            return  Center(
+                                child: Text(S.of(context).no_data));
                           }
                         },
                       ),

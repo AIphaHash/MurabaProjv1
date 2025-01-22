@@ -1,0 +1,6 @@
+{
+     "doctorLogin": "https://devdmisapi.muraba.dev/api/app/doctor/info-as-doctor",
+    "baseUrl": "https://devdmisapi.muraba.dev/api/account/authenticate"
+   
+  }
+  

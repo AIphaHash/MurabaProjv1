@@ -1,7 +1,20 @@
 {
 "usernameInput": "اسم المستخدم",
+"password": "كلمة المرور",
 "failed_load_data": "تعذر تحميل البيانات",
 "no_data": "لا توجد بيانات",
 "extended": "أظهار المزيد",
-"shrink": "أخفاء"
+"shrink": "أخفاء",
+"membershib_date": "تاريخ العضوية",
+"login_error_user_pass": "اسم المستخدم أو كلمة المرور غير صحيحة",
+"select_language": "أختار لغة",
+"or": "أو",
+"sucess_login": "تم تسجيل الدخول بنجاح",
+"forgot_password": "نسيت كلمة المرور",
+"login": "تسجيل الدخول",
+"logout": "تسجيل الخروج",
+"renew": "تجديد",
+"not_active": "غير نشط",
+"":""
+
 }

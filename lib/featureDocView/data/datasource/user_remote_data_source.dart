@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_application_5/core/config/config_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_application_5/featureDocView/data/models/user_model.dart';
@@ -9,7 +10,7 @@ class AuthService {
   // Function for login and getting cookies, then making an authenticated request using the cookies
   Future<String> loginAndGetCookies(String username, String password) async {
     final loginUrl =
-        Uri.parse('https://devdmisapi.muraba.dev/api/account/authenticate');
+        Uri.parse('${ConfigService.get('baseUrl')}');
     final requestBody = {
       "UserNameOrEmailAddress": username,
       "Password": password,
@@ -55,7 +56,7 @@ class UserRemoteDataSource {
   UserRemoteDataSource({required this.client});
 
   Future<List<UserModel>> getUsers() async {
-    final url = 'https://devdmisapi.muraba.dev/api/app/doctor/info-as-doctor';
+    final url = '${ConfigService.get('doctorLogin')}';
     final String? token = await AuthService._storage.read(key: 'authToken');
 
     if (token == null) {

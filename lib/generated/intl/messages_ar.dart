@@ -25,8 +25,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "extended": MessageLookupByLibrary.simpleMessage("أظهار المزيد"),
         "failed_load_data":
             MessageLookupByLibrary.simpleMessage("تعذر تحميل البيانات"),
+        "forgot_password":
+            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور"),
+        "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "login_error_user_pass": MessageLookupByLibrary.simpleMessage(
+            "اسم المستخدم أو كلمة المرور غير صحيحة"),
+        "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "membershib_date":
+            MessageLookupByLibrary.simpleMessage("تاريخ العضوية"),
         "no_data": MessageLookupByLibrary.simpleMessage("لا توجد بيانات"),
+        "not_active": MessageLookupByLibrary.simpleMessage("غير نشط"),
+        "or": MessageLookupByLibrary.simpleMessage("أو"),
+        "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "renew": MessageLookupByLibrary.simpleMessage("تجديد"),
+        "select_language": MessageLookupByLibrary.simpleMessage("أختار لغة"),
         "shrink": MessageLookupByLibrary.simpleMessage("أخفاء"),
+        "sucess_login":
+            MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
         "usernameInput": MessageLookupByLibrary.simpleMessage("اسم المستخدم")
       };
 }

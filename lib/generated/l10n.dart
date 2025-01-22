@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Failed to Load Data`
   String get failed_load_data {
     return Intl.message(
@@ -95,6 +105,106 @@ class S {
     return Intl.message(
       'Show Less',
       name: 'shrink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Membership Date`
+  String get membershib_date {
+    return Intl.message(
+      'Membership Date',
+      name: 'membershib_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Username or Password`
+  String get login_error_user_pass {
+    return Intl.message(
+      'Invalid Username or Password',
+      name: 'login_error_user_pass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Language`
+  String get select_language {
+    return Intl.message(
+      'Select Language',
+      name: 'select_language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or`
+  String get or {
+    return Intl.message(
+      'Or',
+      name: 'or',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login Successful`
+  String get sucess_login {
+    return Intl.message(
+      'Login Successful',
+      name: 'sucess_login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot Password`
+  String get forgot_password {
+    return Intl.message(
+      'Forgot Password',
+      name: 'forgot_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get login {
+    return Intl.message(
+      'Login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Renew`
+  String get renew {
+    return Intl.message(
+      'Renew',
+      name: 'renew',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not Active`
+  String get not_active {
+    return Intl.message(
+      'Not Active',
+      name: 'not_active',
       desc: '',
       args: [],
     );

@@ -25,8 +25,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "extended": MessageLookupByLibrary.simpleMessage("Show More"),
         "failed_load_data":
             MessageLookupByLibrary.simpleMessage("Failed to Load Data"),
+        "forgot_password":
+            MessageLookupByLibrary.simpleMessage("Forgot Password"),
+        "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "login_error_user_pass": MessageLookupByLibrary.simpleMessage(
+            "Invalid Username or Password"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "membershib_date":
+            MessageLookupByLibrary.simpleMessage("Membership Date"),
         "no_data": MessageLookupByLibrary.simpleMessage("No Data Available"),
+        "not_active": MessageLookupByLibrary.simpleMessage("Not Active"),
+        "or": MessageLookupByLibrary.simpleMessage("Or"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "renew": MessageLookupByLibrary.simpleMessage("Renew"),
+        "select_language":
+            MessageLookupByLibrary.simpleMessage("Select Language"),
         "shrink": MessageLookupByLibrary.simpleMessage("Show Less"),
+        "sucess_login":
+            MessageLookupByLibrary.simpleMessage("Login Successful"),
         "usernameInput": MessageLookupByLibrary.simpleMessage("Username")
       };
 }

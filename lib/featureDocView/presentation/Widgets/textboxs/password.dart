@@ -7,7 +7,7 @@ class PasswordBox extends StatefulWidget {
   const PasswordBox({
     Key? key,
     required this.controller,
-    this.hintText = 'Password', // Default hint text
+    required this.hintText ,// Default hint text
   }) : super(key: key);
 
   @override
