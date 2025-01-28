@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/LoginCard.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/dropDown/lanuguageDD.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/logoBanner.dart';
+import 'package:flutter_application_5/featureDocView/presentation/provider/language.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -30,11 +33,28 @@ class Login extends StatelessWidget {
                   SizedBox(
                     height: 40,
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(bottom: 10.0), // Space below the logo
-                    child: CustomAppBar(), // LogoBanner widget
-                  ),
+                  Stack(
+                        children: [
+                        // Custom AppBar (Logo Banner)
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 10.0),
+                          child: CustomAppBar(),
+                        ),
+
+                        // Language Dropdown (Positioned at the top-left corner)
+                         Consumer<Language>(builder: (context, language, child){
+          return
+          Positioned(
+          top: 45.0, // Adjust the vertical position above CustomAppBar
+          right: 340.0, // Adjust the horizontal position
+          child: LanguageDropdown(onLanguageChanged: (String newLang) {language.languageChange(languag: newLang);
+          }
+          ),
+          );}
+        ),
+                      ],
+                    ),
+
                   Padding(
                     padding: EdgeInsets.all(0),
                     child: SizedBox(

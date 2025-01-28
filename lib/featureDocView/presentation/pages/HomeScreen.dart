@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/featureDocView/domain/entites/user.dart';
 import 'package:flutter_application_5/featureDocView/domain/useCases/fetch_users.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/dropDown/lanuguageDD.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/enterDate.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/job.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/logoBanner.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/logoutButton.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/renew.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/user_card.dart';
+import 'package:flutter_application_5/featureDocView/presentation/provider/language.dart';
 import 'package:flutter_application_5/generated/l10n.dart';
+import 'package:provider/provider.dart';
 
 class Homescreen extends StatefulWidget {
   final FetchUsers fetchUsers;
@@ -83,6 +86,9 @@ class _HomescreenState extends State<Homescreen> {
                   height: 30), // Space to account for the settings icon
               // CustomAppBar (Stays fixed)
               CustomAppBar(),
+              SizedBox(
+                height: 10,
+              ),
               // UserCard (Always visible)
               FutureBuilder<List<User>>(
                 future: usersFuture,
@@ -107,6 +113,7 @@ class _HomescreenState extends State<Homescreen> {
                   }
                 },
               ),
+              SizedBox(height: 10,),
               // Additional Content (Toggle height)
               AnimatedContainer(
                 duration: const Duration(milliseconds: 500), // Smooth animation
@@ -178,21 +185,21 @@ class _HomescreenState extends State<Homescreen> {
                   ],
                 ),
               ),
+              SizedBox(height: 10),
               // Push Button at the Bottom
               LogoutButton(),
             ],
           ),
         ),
-        Positioned(
-          top: 40.0, // Adjust the vertical position above CustomAppBar
-          right: 280.0, // Adjust the horizontal position
-          child: IconButton(
-            icon: const Icon(Icons.settings,
-                color: Color.fromARGB(255, 54, 54, 54), size: 30.0),
-            onPressed: () {
-              _showLanguageDialog(context);
-            },
+         Consumer<Language>(builder: (context, language, child){
+          return
+          Positioned(
+          top: 45.0, // Adjust the vertical position above CustomAppBar
+          right: 340.0, // Adjust the horizontal position
+          child: LanguageDropdown(onLanguageChanged: (String newLang) {language.languageChange(languag: newLang);
+          }
           ),
+          );}
         ),
       ],
     );
