@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/generated/l10n.dart';
 
 class Renewwindow extends StatelessWidget {
   const Renewwindow({Key? key}) : super(key: key);
@@ -14,8 +15,8 @@ class Renewwindow extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center, // Center vertically
           crossAxisAlignment: CrossAxisAlignment.center, // Center horizontally
           children: [
-            const Text(
-              "لقد انتهت صلاحية تجديدك في نقابة الاطباء",
+            Text(
+              S.of(context).renew_message,
               textAlign: TextAlign.center, // Center text
               style: TextStyle(
                 fontSize: 13,
@@ -25,8 +26,8 @@ class Renewwindow extends StatelessWidget {
             ),
             const SizedBox(
                 height: 20), // Add spacing between title and question
-            const Text(
-              "هل تريد تقديم طلب تجديد؟",
+            Text(
+              S.of(context).renew_request,
               textAlign: TextAlign.center, // Center text
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
@@ -51,7 +52,7 @@ class Renewwindow extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8), // Rounded corners
                     ),
                   ),
-                  child: const Text("لا"),
+                  child: Text(S.of(context).no),
                 ),
                 TextButton(
                   onPressed: () {
@@ -68,7 +69,7 @@ class Renewwindow extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8), // Rounded corners
                     ),
                   ),
-                  child: const Text("نعم"),
+                  child: Text(S.of(context).yes),
                 ),
               ],
             ),

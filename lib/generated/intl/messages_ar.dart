@@ -33,15 +33,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "membershib_date":
             MessageLookupByLibrary.simpleMessage("تاريخ العضوية"),
+        "no": MessageLookupByLibrary.simpleMessage("لا"),
         "no_data": MessageLookupByLibrary.simpleMessage("لا توجد بيانات"),
         "not_active": MessageLookupByLibrary.simpleMessage("غير نشط"),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "renew": MessageLookupByLibrary.simpleMessage("تجديد"),
+        "renew_message": MessageLookupByLibrary.simpleMessage(
+            "لقد انتهت صلاحية تجديدك في نقابة الاطباء"),
+        "renew_request":
+            MessageLookupByLibrary.simpleMessage("هل تريد تقديم طلب تجديد؟"),
         "select_language": MessageLookupByLibrary.simpleMessage("أختار لغة"),
         "shrink": MessageLookupByLibrary.simpleMessage("أخفاء"),
         "sucess_login":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
-        "usernameInput": MessageLookupByLibrary.simpleMessage("اسم المستخدم")
+        "usernameInput": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+        "yes": MessageLookupByLibrary.simpleMessage("نعم")
       };
 }

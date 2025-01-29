@@ -209,6 +209,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Your renewal at the Doctors Syndicate has expired`
+  String get renew_message {
+    return Intl.message(
+      'Your renewal at the Doctors Syndicate has expired',
+      name: 'renew_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to submit a renewal request?`
+  String get renew_request {
+    return Intl.message(
+      'Do you want to submit a renewal request?',
+      name: 'renew_request',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

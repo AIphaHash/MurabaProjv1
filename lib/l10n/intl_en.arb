@@ -14,6 +14,9 @@
 "login": "Login",
 "logout": "Logout",
 "renew": "Renew",
-"not_active": "Not Active"
-
+"not_active": "Not Active",
+"renew_message": "Your renewal at the Doctors Syndicate has expired",
+"renew_request": "Do you want to submit a renewal request?",
+"yes": "Yes",
+"no": "No"
 }

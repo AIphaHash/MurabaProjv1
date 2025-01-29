@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_5/featureDocView/presentation/Widgets/renewWindow.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/window/renewWindow.dart';
 import 'package:flutter_application_5/generated/l10n.dart';
 import 'package:intl/intl.dart'; // For date formatting
 import 'package:flutter_application_5/featureDocView/domain/entites/user.dart';

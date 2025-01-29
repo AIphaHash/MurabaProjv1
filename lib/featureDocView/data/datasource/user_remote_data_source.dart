@@ -1,16 +1,17 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:flutter_application_5/core/config/config_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_application_5/featureDocView/data/models/user_model.dart';
 
-class AuthService {
+class AuthService with ChangeNotifier {
   static final _storage = FlutterSecureStorage();
   static FlutterSecureStorage get storage => _storage;
+
   // Function for login and getting cookies, then making an authenticated request using the cookies
   Future<String> loginAndGetCookies(String username, String password) async {
-    final loginUrl =
-        Uri.parse('${ConfigService.get('baseUrl')}');
+    final loginUrl = Uri.parse('${ConfigService.get('baseUrl')}');
     final requestBody = {
       "UserNameOrEmailAddress": username,
       "Password": password,
@@ -32,12 +33,10 @@ class AuthService {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
 
         final String? token = responseData['accessToken'];
-      
 
         // Encrypt the cookie before storing it securely
         if (token != null) {
           await _storage.write(key: 'authToken', value: token);
-          
 
           return 'Login Successful';
         }

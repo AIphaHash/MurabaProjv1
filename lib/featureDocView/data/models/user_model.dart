@@ -1,4 +1,5 @@
 class UserModel {
+  final String ID;
   final String fullName;
   final String email;
   final String membershipDate;
@@ -10,6 +11,7 @@ class UserModel {
   final String membershipAcceptDate;
 
   UserModel({
+    required this.ID,
     required this.fullName,
     required this.email,
     required this.membershipDate,
@@ -23,6 +25,7 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
+      ID: json['id'] ?? '',
       fullName: json['enFullName'] ?? '',
       email: json['email'] ?? '',
       membershipDate: json['membershipDate'] ?? '',

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_5/featureDocView/domain/entites/user.dart'; // Import your CustomAppBar file
+import 'package:flutter_application_5/featureDocView/domain/entites/user.dart';
+import 'package:flutter_application_5/featureDocView/presentation/Widgets/window/ChangePFPwindow.dart';
+import 'package:flutter_application_5/featureDocView/presentation/provider/changePFP.dart';
+import 'package:provider/provider.dart';
 
 class UserCard extends StatelessWidget {
   final User user;
@@ -9,9 +12,9 @@ class UserCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 110, // Set the desired height for the background
+      height: 110,
       child: Card(
-        color: Colors.white, // Set the background color to white
+        color: Colors.white,
         margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
@@ -26,31 +29,26 @@ class UserCard extends StatelessWidget {
                       children: [
                         Container(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 10.0,
-                              vertical:
-                                  0.0), // Add padding inside the container
+                              horizontal: 10.0, vertical: 0.0),
                           decoration: BoxDecoration(
-                            color: Colors.green, // Background color
-                            borderRadius:
-                                BorderRadius.circular(6), // Border radius
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(6),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                user.status, // Replace with your desired text
+                                user.status,
                                 style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white, // Text color
-                                ),
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
                               ),
-                              const SizedBox(
-                                  width: 4), // Space between text and dot
+                              const SizedBox(width: 4),
                               Icon(
                                 Icons.circle,
-                                size: 12, // Size of the dot
-                                color: Colors.white, // Color of the dot
+                                size: 12,
+                                color: Colors.white,
                               ),
                             ],
                           ),
@@ -80,13 +78,10 @@ class UserCard extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // Display the full name using a tooltip or snackbar
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(user.fullName),
-                            duration: Duration(
-                                seconds:
-                                    2), // Display the message for 2 seconds
+                            duration: Duration(seconds: 2),
                           ),
                         );
                       },
@@ -98,9 +93,8 @@ class UserCard extends StatelessWidget {
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
                         ),
-                        overflow: TextOverflow
-                            .ellipsis, // Ensures ellipses for long text
-                        maxLines: 1, // Limits the text to a single line
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                     ),
                     Align(
@@ -113,22 +107,30 @@ class UserCard extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(width: 10), // Space between text and image
-              Container(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
-                    'https://devdmisapi.muraba.dev/${user.pfp}',
-                    width: 75, // Adjust the width as needed
-                    height: 120, // Adjust the height as needed
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Icon(Icons.error,
-                          size: 80); // Fallback if the image fails to load
-                    },
-                  ),
-                ),
-              ),
+              const SizedBox(width: 10),
+              GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return UserImagePopup();
+                      },
+                    );
+                  },
+                  child: Container(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.network(
+                        'https://devdmisapi.muraba.dev/${user.pfp}',
+                        width: 75,
+                        height: 120,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Icon(Icons.error, size: 80);
+                        },
+                      ),
+                    ),
+                  ))
             ],
           ),
         ),

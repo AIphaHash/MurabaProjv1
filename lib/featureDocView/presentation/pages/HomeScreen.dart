@@ -31,41 +31,6 @@ class _HomescreenState extends State<Homescreen> {
     usersFuture = widget.fetchUsers.call();
   }
 
-  // This function will show the popup with the dropdown options
-  void _showLanguageDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return SimpleDialog(
-          title: Text(S.of(context).select_language),
-          children: <Widget>[
-            SimpleDialogOption(
-              onPressed: () {
-                Navigator.pop(context, 'en');
-                // Handle language selection here
-                print('Selected language: en');
-              },
-              child: Text('English'),
-            ),
-            SimpleDialogOption(
-              onPressed: () {
-                Navigator.pop(context, 'ar');
-                // Handle language selection here
-                print('Selected language: ar');
-              },
-              child: Text('Arabic'),
-            ),
-          ],
-        );
-      },
-    ).then((selectedValue) {
-      if (selectedValue != null) {
-        // Handle language selection here
-        print('Selected language: $selectedValue');
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -85,7 +50,28 @@ class _HomescreenState extends State<Homescreen> {
               const SizedBox(
                   height: 30), // Space to account for the settings icon
               // CustomAppBar (Stays fixed)
-              CustomAppBar(),
+              Stack(
+                children: [
+                  // Custom AppBar (Logo Banner)
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 10.0),
+                    child: CustomAppBar(),
+                  ),
+
+                  // Language Dropdown (Positioned at the top-left corner)
+                  Consumer<Language>(builder: (context, language, child) {
+                    return Positioned(
+                      top:
+                          15.0, // Adjust the vertical position above CustomAppBar
+                      right: 340.0, // Adjust the horizontal position
+                      child:
+                          LanguageDropdown(onLanguageChanged: (String newLang) {
+                        language.languageChange(languag: newLang);
+                      }),
+                    );
+                  }),
+                ],
+              ),
               SizedBox(
                 height: 10,
               ),
@@ -113,7 +99,9 @@ class _HomescreenState extends State<Homescreen> {
                   }
                 },
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               // Additional Content (Toggle height)
               AnimatedContainer(
                 duration: const Duration(milliseconds: 500), // Smooth animation
@@ -145,8 +133,7 @@ class _HomescreenState extends State<Homescreen> {
                               },
                             );
                           } else {
-                            return  Center(
-                                child: Text(S.of(context).no_data));
+                            return Center(child: Text(S.of(context).no_data));
                           }
                         },
                       ),
@@ -174,32 +161,21 @@ class _HomescreenState extends State<Homescreen> {
                               },
                             );
                           } else {
-                            return  Center(
-                                child: Text(S.of(context).no_data));
+                            return Center(child: Text(S.of(context).no_data));
                           }
                         },
                       ),
                     ),
                     job(),
-                    // Optional spacing
+                    SizedBox(
+                      height: 10,
+                    ),
+                    LogoutButton(),
                   ],
                 ),
               ),
-              SizedBox(height: 10),
-              // Push Button at the Bottom
-              LogoutButton(),
             ],
           ),
-        ),
-         Consumer<Language>(builder: (context, language, child){
-          return
-          Positioned(
-          top: 45.0, // Adjust the vertical position above CustomAppBar
-          right: 340.0, // Adjust the horizontal position
-          child: LanguageDropdown(onLanguageChanged: (String newLang) {language.languageChange(languag: newLang);
-          }
-          ),
-          );}
         ),
       ],
     );

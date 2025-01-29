@@ -33,16 +33,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "membershib_date":
             MessageLookupByLibrary.simpleMessage("Membership Date"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "no_data": MessageLookupByLibrary.simpleMessage("No Data Available"),
         "not_active": MessageLookupByLibrary.simpleMessage("Not Active"),
         "or": MessageLookupByLibrary.simpleMessage("Or"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "renew": MessageLookupByLibrary.simpleMessage("Renew"),
+        "renew_message": MessageLookupByLibrary.simpleMessage(
+            "Your renewal at the Doctors Syndicate has expired"),
+        "renew_request": MessageLookupByLibrary.simpleMessage(
+            "Do you want to submit a renewal request?"),
         "select_language":
             MessageLookupByLibrary.simpleMessage("Select Language"),
         "shrink": MessageLookupByLibrary.simpleMessage("Show Less"),
         "sucess_login":
             MessageLookupByLibrary.simpleMessage("Login Successful"),
-        "usernameInput": MessageLookupByLibrary.simpleMessage("Username")
+        "usernameInput": MessageLookupByLibrary.simpleMessage("Username"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

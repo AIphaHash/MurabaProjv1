@@ -34,26 +34,27 @@ class Login extends StatelessWidget {
                     height: 40,
                   ),
                   Stack(
-                        children: [
-                        // Custom AppBar (Logo Banner)
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 10.0),
-                          child: CustomAppBar(),
-                        ),
+                    children: [
+                      // Custom AppBar (Logo Banner)
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10.0),
+                        child: CustomAppBar(),
+                      ),
 
-                        // Language Dropdown (Positioned at the top-left corner)
-                         Consumer<Language>(builder: (context, language, child){
-          return
-          Positioned(
-          top: 45.0, // Adjust the vertical position above CustomAppBar
-          right: 340.0, // Adjust the horizontal position
-          child: LanguageDropdown(onLanguageChanged: (String newLang) {language.languageChange(languag: newLang);
-          }
-          ),
-          );}
-        ),
-                      ],
-                    ),
+                      // Language Dropdown (Positioned at the top-left corner)
+                      Consumer<Language>(builder: (context, language, child) {
+                        return Positioned(
+                          top:
+                              15.0, // Adjust the vertical position above CustomAppBar
+                          right: 340.0, // Adjust the horizontal position
+                          child: LanguageDropdown(
+                              onLanguageChanged: (String newLang) {
+                            language.languageChange(languag: newLang);
+                          }),
+                        );
+                      }),
+                    ],
+                  ),
 
                   Padding(
                     padding: EdgeInsets.all(0),

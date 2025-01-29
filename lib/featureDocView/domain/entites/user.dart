@@ -1,5 +1,6 @@
 // domain/entities/user.dart
 class User {
+  final String ID;
   final String fullName;
   final String email;
   final String membershipDate;
@@ -11,6 +12,7 @@ class User {
   final String membershipAcceptDate;
 
   User({
+    required this.ID,
     required this.fullName,
     required this.email,
     required this.membershipDate,

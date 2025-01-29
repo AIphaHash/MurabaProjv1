@@ -1,5 +1,6 @@
 {
      "doctorLogin": "https://devdmisapi.muraba.dev/api/app/doctor/info-as-doctor",
-    "baseUrl": "https://devdmisapi.muraba.dev/api/account/authenticate"
+    "baseUrl": "https://devdmisapi.muraba.dev/api/account/authenticate",
+    "changePFP": "https://devdmisapi.muraba.dev/api/app/doctor/doctor-personal-image"
   }
   

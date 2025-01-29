@@ -13,6 +13,7 @@ class UserRepositoryImpl implements UserRepository {
       final userModels = await remoteDataSource.getUsers();
       return userModels
           .map((model) => User(
+                ID: model.ID,
                 fullName: model.fullName,
                 email: model.email,
                 membershipDate: model.membershipDate,
