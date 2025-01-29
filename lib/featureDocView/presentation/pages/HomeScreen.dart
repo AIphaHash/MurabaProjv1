@@ -8,8 +8,11 @@ import 'package:flutter_application_5/featureDocView/presentation/Widgets/logoBa
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/logoutButton.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/renew.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/user_card.dart';
+import 'package:flutter_application_5/featureDocView/presentation/bloc/bloc/language_bloc.dart';
+import 'package:flutter_application_5/featureDocView/presentation/bloc/bloc/language_state.dart';
 import 'package:flutter_application_5/featureDocView/presentation/provider/language.dart';
 import 'package:flutter_application_5/generated/l10n.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class Homescreen extends StatefulWidget {
@@ -59,17 +62,18 @@ class _HomescreenState extends State<Homescreen> {
                   ),
 
                   // Language Dropdown (Positioned at the top-left corner)
-                  Consumer<Language>(builder: (context, language, child) {
-                    return Positioned(
-                      top:
-                          15.0, // Adjust the vertical position above CustomAppBar
-                      right: 340.0, // Adjust the horizontal position
-                      child:
-                          LanguageDropdown(onLanguageChanged: (String newLang) {
-                        language.languageChange(languag: newLang);
-                      }),
-                    );
-                  }),
+                  
+                    Positioned(
+                                top: 15.0, // Adjust the vertical position above CustomAppBar
+                                right: 340.0, // Adjust the horizontal position
+                                child: BlocBuilder<LanguageBloc, LanguageState>(
+                                  builder: (context, state) {
+                                    return LanguageDropdown(); // Now reflects the current language state
+                                  },
+                                ),
+                              )
+
+                  
                 ],
               ),
               SizedBox(
