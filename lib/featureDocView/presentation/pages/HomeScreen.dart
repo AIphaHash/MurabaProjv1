@@ -71,7 +71,7 @@ class _HomescreenState extends State<Homescreen> {
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 9,
               ),
               // UserCard (Always visible)
               FutureBuilder<List<User>>(
