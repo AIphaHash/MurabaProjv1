@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/LoginCard.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/dropDown/lanuguageDD.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/logoBanner.dart';
-import 'package:flutter_application_5/featureDocView/presentation/bloc/bloc/language_bloc.dart';
-import 'package:flutter_application_5/featureDocView/presentation/bloc/bloc/language_state.dart';
-import 'package:flutter_application_5/featureDocView/presentation/provider/language.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -45,17 +42,15 @@ class Login extends StatelessWidget {
                       ),
 
                       // Language Dropdown (Positioned at the top-left corner)
-                      
-                        Positioned(
-                                    top: 15.0, // Adjust the vertical position above CustomAppBar
-                                    right: 340.0, // Adjust the horizontal position
-                                    child: BlocBuilder<LanguageBloc, LanguageState>(
-                                      builder: (context, state) {
-                                        return LanguageDropdown(); // Now reflects the current language state
-                                      },
-                                    ),
-                                  )
 
+                      Positioned(
+                          top:
+                              15.0, // Adjust the vertical position above CustomAppBar
+                          right: 340.0, // Adjust the horizontal position
+                          child:
+                              LanguageDropdown() // Now reflects the current language state
+
+                          )
                     ],
                   ),
 
