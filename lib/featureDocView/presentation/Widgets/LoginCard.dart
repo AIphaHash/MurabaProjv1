@@ -35,7 +35,7 @@ class _CustomLoginState extends State<CustomLogin> {
 
     // Initialize the final variables
     final httpClient = http.Client();
-    final remoteDataSource = UserRemoteDataSource(client: httpClient);
+    final remoteDataSource = UserRemoteDataSource();
     final userRepository =
         UserRepositoryImpl(remoteDataSource: remoteDataSource);
     fetchUsers = FetchUsers(userRepository);
@@ -113,14 +113,18 @@ class _CustomLoginState extends State<CustomLogin> {
             ),
             const SizedBox(height: 12.0),
             Text(
-             S.of(context).or,
+              S.of(context).or,
               style: const TextStyle(color: Color.fromARGB(255, 88, 88, 88)),
             ),
             SizedBox(height: 10),
             // Emailbox and other widgets
-            Emailbox(controller: _usernameController, hintText: S.of(context).usernameInput),
+            Emailbox(
+                controller: _usernameController,
+                hintText: S.of(context).usernameInput),
             const SizedBox(height: 12.0),
-            PasswordBox(controller: _passwordController, hintText: S.of(context).password),
+            PasswordBox(
+                controller: _passwordController,
+                hintText: S.of(context).password),
             const SizedBox(height: 5.0),
             Forgotpass(text: S.of(context).forgot_password, onPressed: () {}),
             const SizedBox(height: 5.0),
