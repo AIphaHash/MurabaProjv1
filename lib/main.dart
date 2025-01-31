@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/core/config/config_service.dart';
-import 'package:flutter_application_5/featureDocView/data/datasource/user_remote_data_source.dart';
-import 'package:flutter_application_5/featureDocView/data/repository/user_repository_impl.dart';
-import 'package:flutter_application_5/featureDocView/domain/useCases/fetch_users.dart';
+
 import 'package:flutter_application_5/featureDocView/presentation/bloc/language_bloc.dart';
 import 'package:flutter_application_5/featureDocView/presentation/pages/Login.dart';
 import 'package:flutter_application_5/generated/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +29,8 @@ class MyApp extends StatelessWidget {
             locale = state.language;
           }
           return MaterialApp(
+                      navigatorKey: Get.key, //  Allows using GetX navigation
+
             locale: Locale(locale),
             localizationsDelegates: [
               S.delegate,

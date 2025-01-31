@@ -8,8 +8,11 @@ import 'package:flutter_application_5/featureDocView/presentation/Widgets/textbo
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/textboxs/password.dart';
 import 'package:flutter_application_5/featureDocView/presentation/pages/HomeScreen.dart';
 import 'package:flutter_application_5/generated/l10n.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 class CustomLogin extends StatefulWidget {
   final double height;
@@ -63,12 +66,7 @@ class _CustomLoginState extends State<CustomLogin> {
       });
 
       // Navigate to another page upon successful login
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Homescreen(fetchUsers: fetchUsers),
-        ),
-      );
+     Get.to(Homescreen(fetchUsers: fetchUsers));
     } catch (e) {
       setState(() {
         _response = e.toString(); // Display error message if login fails
