@@ -10,8 +10,6 @@ class AuthService with ChangeNotifier {
   static final Dio _dio = Dio(BaseOptions(
     baseUrl: ConfigService.get('baseUrl'), // Set base URL
     headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
       'dmis-app': '1',
     },
   ));
@@ -50,10 +48,7 @@ class AuthService with ChangeNotifier {
 class UserRemoteDataSource {
   final Dio dio = Dio(BaseOptions(
     baseUrl: ConfigService.get('doctorLogin'),
-    headers: {
-      'accept': 'text/plain',
-      'X-Requested-With': 'XMLHttpRequest',
-    },
+    headers: {},
   ));
 
   Future<List<UserModel>> getUsers() async {

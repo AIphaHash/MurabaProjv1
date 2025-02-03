@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/featureDocView/domain/entites/user.dart';
 import 'package:flutter_application_5/featureDocView/presentation/Widgets/window/ChangePFPwindow.dart';
-import 'package:flutter_application_5/featureDocView/presentation/provider/changePFP.dart';
-import 'package:provider/provider.dart';
 
 class UserCard extends StatelessWidget {
   final User user;

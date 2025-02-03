@@ -3,8 +3,6 @@ import 'dart:typed_data'; // Import for Uint8List
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:flutter_application_5/featureDocView/presentation/Widgets/Buttons/confirmPFP.dart';
-
 class UserImagePopup extends StatefulWidget {
   const UserImagePopup({Key? key}) : super(key: key);
 
@@ -86,7 +84,6 @@ class _UserImagePopupState extends State<UserImagePopup> {
               ),
             ),
             SizedBox(height: 10),
-            ConfirmButton()
           ],
         ),
       ),
